@@ -1,0 +1,154 @@
+ps aux | grep node
+
+
+
+to install something
+npm config set proxy http://192.168.0.232:3128
+npm config set https-proxy http://192.168.0.232:3128
+
+
+to start mongodb
+sudo mongod --dbpath /var/lib/mongodb/data/db
+
+to clone
+ git clone https://nitinignivia@bitbucket.org/nitinignivia/pintu-landingpage-backend.git
+
+
+git status
+git add -A
+git commit -m "code updated"
+ git push origin master
+gitk --all
+gitk --all
+git config --list
+
+
+
+sudo git reset --hard origin/dev1 
+
+nvm use v4.2.6
+
+
+to fetch on server
+sudo git fetch origin
+
+path of project
+/usr/share/nginx/www/sayso/sayso
+
+MONGOCHEF
+cd Downloads/mongochef-4.3.0-linux-x64-dist/bin/
+igniva-qa-17@ignivaqa17-H81M-S:~/Downloads/mongochef-4.3.0-linux-x64-dist/bin$ bash mongochef.sh 
+
+
+server 11_hour
+ssh lxigniva@192.168.0.235
+igniva@9876
+
+/usr/share/nginx/www/StyleNShop_Backend
+
+
+if error in fetching from server
+sudo chmod -R 777 11_hour/
+
+
+to start server
+pm2 start server.js --name quickdockets_node
+
+
+python -m SimpleHTTPServer 8000
+
+
+================================
+
+Eleventh hour live SSH Login Detail:-
+Server Public IP:    169.50.206.107
+User:                      root
+Password:              X8Zmth9r
+
+Mongo DB Detail:-
+DB:        elevenapilive
+User:     elevenapi
+Pswd:    Gt38TH2IPsdV7P
+
+DB:       elevenadmin
+User:    elevenadmi
+Pswd:   U48ThioQ0W0dH
+
+Port Detail:-
+
+admin.eleventhhourapp.com 5000
+api.eleventhhourapp.com      5001
+
+===========================================
+IGNITRACK LIVE CREDENTIALS
+
+Live ip : 169.50.75.236
+Username : root
+Password : K0L34H3~93h
+Port	 : 4444
+
+ssh root@169.50.75.236  -p 4444
+
+/var/www/html/ignitrack.ignivasolutions.com/Ignitrack
+
+ Host:    169.50.75.236
+> DB:       ignitrack_live
+> User:    78ignitrck
+> Pswd:   Y1Un9HlOw3La
+
+-----------------------------------------------------
+
+SAYSO DB SCHEMA - gliffy link for sayso schema
+https://www.gliffy.com/go/share/so4cb0xnq0p7tydqpi7v
+
+
+style n shop DB SCHEMA - gliffy link for stylenshop schema
+https://go.gliffy.com/go/share/s2e0qrwysdjl6wr1hax0
+
+Virtual classroom
+https://go.gliffy.com/go/share/sq21j556om6y19dbwf2b
+
+
+
+Event Name – uploadMultiplefiles
+
+Purpose       : To send sayso with a pic to a user .
+ 
+Request       : Mandatory - 
+		1st parameter – file1
+		2nd parameter – file Extension
+		3rd parameter – file 2
+		4th parameter - fileExtension
+		5th parameter - json 
+		{	from – (user_id who is sending the message)
+			to -	(user_id to whom message is to be sent)
+			sent_time – (timestamp of current time)
+			duration (string) -OPTIONAL
+		}
+		
+Response    : 200 (success) , 400 (error)
+
+
+
+killall -9 skype
+
+
+/etc/apt/sources.list.d# mongo
+
+const makeRequest = async () => {
+  console.log(await getJSON())
+  return "done"
+}
+
+makeRequest()
+
+http://cloudwebsolutions.in/
+
+
+
+
+
+
+
+
+
