@@ -1,0 +1,29 @@
+<h3 class="page-title">Add Category</h3>
+<div class="panel">
+  <div class="panel-heading">
+    <a [routerLink]="['/add-subject']" class="btn btn-primary">Back</a>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <form (ngSubmit)="catForm.valid ? onadd() : ''" #catForm="ngForm" novalidate>
+          <div class="form-group ">
+            <label>Category Name</label>
+            <input type="text" class="form-control" placeholder="Enter Category Name" name="Category" [(ngModel)]="categoryname" #category="ngModel"
+              required category />
+
+            <div *ngIf="category.invalid && (category.dirty || category.touched)" class="text-danger">
+              <div *ngIf="category.errors.required">category name is required</div>
+            </div>
+
+
+          </div>
+          <div class="form-group">
+            <button type="submit" [disabled]="catForm.invalid" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

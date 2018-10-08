@@ -1,0 +1,53 @@
+<h3 class="page-title">Add Subject</h3>
+<div class="panel">
+  <div class="panel-heading">
+    <a [routerLink]="['/add-category']" class="btn btn-success">Add New Category</a>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-5">
+        <form (ngSubmit)="subjectForm.valid ? onsubject() : ''" #subjectForm="ngForm" novalidate>
+          <div class="form-group ">
+            <label>Category</label>
+            <select class="form-control" name="parent_id" [(ngModel)]="subjectModel.parent_id">
+              <option *ngFor="let list of catrecords;" value="{{list._id}}">{{list.name}}</option>
+            </select>
+          </div>
+          <div class="form-group ">
+            <label>Subject</label>
+            <input type="text" class="form-control" placeholder="Add Subject" name="subject" [(ngModel)]="subjectModel.subject" #subject="ngModel"
+              required subject />
+
+            <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="text-danger">
+              <div *ngIf="subject.errors.required">Subject is required</div>
+            </div>
+
+          </div>
+          <div class="form-group ">
+            <label>Skill</label>
+
+            <tag-input name="skill" [(ngModel)]="skills" #skill="ngModel" [modelAsStrings]="true" required skill></tag-input>
+            <div *ngIf="skill.invalid && (skill.dirty || skill.touched)" class="text-danger">
+              <div *ngIf="skill.errors.required">skills is required</div>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label>Description</label>
+            <textarea cols="10" rows="10" class="form-control" placeholder="Enter Description" name="description" [(ngModel)]="subjectModel.description"
+              #description="ngModel" required description></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+              <div *ngIf="description.errors.required">skills is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="subjectForm.invalid">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

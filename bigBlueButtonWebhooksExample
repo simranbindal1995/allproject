@@ -1,0 +1,132 @@
+{
+    event: '{"payload":{"duration":0,"external_meeting_id":"4","create_time":1531284771806,"meeting_id":"1b6453892473a467d07372d45eb05abc2031647a-1531284771806","is_breakout":false,"name":"Firstgrouplesson","moderator_pass":"5b224f6a8107467d788a035a","recorded":false,"voice_conf":"05310","viewer_pass":"45b224f6a8107467d788a035aFirstgrouplesson","create_date":"Wed Jul 11 10:22:51 IST 2018"},"header":{"name":"meeting_created_message","version":"0.0.1","current_time":1531284773058,"timestamp":1672170}}',
+    20 | Virtual | timestamp: '1531284773275'
+}
+
+
+
+
+
+
+
+
+
+
+{
+    event: '{"payload":{"meeting_id":"1b6453892473a467d07372d45eb05abc2031647a-1531284771806","user":{"role":"MODERATOR","presenter":false,"locked":false,"extern_userid":"5b224f6a8107467d788a035a","phone_user":false,"webcam_stream":[],"emoji_status":"none","voiceUser":{"talking":false,"callername":"Nitin","locked":false,"callernum":"Nitin","muted":false,"web_userid":"vjec6pfg6tdq_1","joined":false,"userid":"vjec6pfg6tdq_1"},"name":"Nitin","listenOnly":false,"avatarURL":"http://10.1.173.125/client/avatar.png","userid":"vjec6pfg6tdq_1","has_stream":false}},"header":{"name":"user_joined_message","version":"0.0.1","current_time":1531284805040,"timestamp":1704152}}',
+    20 | Virtual | timestamp: '1531284805086'
+}
+
+
+
+
+
+
+
+
+
+
+
+{
+    event: '{"payload":
+    {
+        "meeting_id": "1b6453892473a467d07372d45eb05abc2031647a-1531284771806",
+        "user":
+        {
+            "role": "MODERATOR",
+            "presenter": false,
+            "locked": false,
+            "extern_userid": "5b224f6a8107467d788a035a",
+            "phone_user": false,
+            "webcam_stream": [],
+            "emoji_status": "none",
+            "voiceUser":
+            {
+                "talking": false,
+                "callername": "Nitin",
+                "locked": false,
+                "callernum": "Nitin",
+                "muted": false,
+                "web_userid": "pes5wje5mamv_1",
+                "joined": false,
+                "userid": "pes5wje5mamv_1"
+            },
+            "name": "Nitin",
+            "listenOnly": false,
+            "avatarURL": "http://10.1.173.125/client/avatar.png",
+            "userid": "pes5wje5mamv_1",
+            "has_stream": false
+        }
+    },
+    "header":
+    {
+        "name": "user_left_message",
+        "version": "0.0.1",
+        "current_time": 1531284962085,
+        "timestamp": 1861196
+    }
+}
+',
+20 | Virtual | timestamp: '1531284962087'
+}
+
+
+
+
+
+
+{
+    response: 20 | Virtual |
+    {
+        returncode: 'SUCCESS',
+        20 | Virtual | meetingID: '4',
+        20 | Virtual | internalMeetingID: '1b6453892473a467d07372d45eb05abc2031647a-1531288379390',
+        20 | Virtual | parentMeetingID: '',
+        20 | Virtual | attendeePW: '45b224f6a8107467d788a035aFirstgrouplesson',
+        20 | Virtual | moderatorPW: '5b224f6a8107467d788a035a',
+        20 | Virtual | createTime: '1531288379390',
+        20 | Virtual | voiceBridge: '62844',
+        20 | Virtual | dialNumber: '613-555-1234',
+        20 | Virtual | createDate: 'Wed Jul 11 11:22:59 IST 2018',
+        20 | Virtual | hasUserJoined: 'false',
+        20 | Virtual | duration: '0',
+        20 | Virtual | hasBeenForciblyEnded: 'false',
+        20 | Virtual | messageKey: 'duplicateWarning',
+        20 | Virtual | message: 'This conference was already in existence and may currently be in progress.'
+    }
+}
+
+
+
+
+
+payload:
+    20 | Virtual |
+    {
+        meeting_id: '1b6453892473a467d07372d45eb05abc2031647a-1531291492791',
+        20 | Virtual | user: 20 | Virtual |
+        {
+            role: 'MODERATOR',
+            20 | Virtual | presenter: false,
+            20 | Virtual | locked: false,
+            20 | Virtual | extern_userid: '5b233e7de059dc424793c496',
+            20 | Virtual | phone_user: false,
+            20 | Virtual | webcam_stream: [],
+            20 | Virtual | emoji_status: 'none',
+            20 | Virtual | voiceUser: [Object],
+            20 | Virtual | name: 'Nitin',
+            20 | Virtual | listenOnly: false,
+            20 | Virtual | avatarURL: 'http://10.1.173.125/client/avatar.png',
+            20 | Virtual | userid: 't7dm2pbh7pks_1',
+            20 | Virtual | has_stream: false
+        }
+    },
+    20 | Virtual | header:
+    20 | Virtual |
+    {
+        name: 'user_joined_message',
+        20 | Virtual | version: '0.0.1',
+        20 | Virtual | current_time: 1531291496807,
+        20 | Virtual | timestamp: 8395918
+    }
+}

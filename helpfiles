@@ -1,148 +1,181 @@
-ps aux | grep node
-
-
-
-to install something
-npm config set proxy http://192.168.0.232:3128
-npm config set https-proxy http://192.168.0.232:3128
-
-
-to start mongodb
-sudo mongod --dbpath /var/lib/mongodb/data/db
-
-to clone
- git clone https://nitinignivia@bitbucket.org/nitinignivia/pintu-landingpage-backend.git
-
-
-git status
-git add -A
-git commit -m "code updated"
- git push origin master
-gitk --all
-gitk --all
-git config --list
-
-
-
-sudo git reset --hard origin/dev1 
-
-nvm use v4.2.6
-
-
-to fetch on server
-sudo git fetch origin
-
-path of project
-/usr/share/nginx/www/sayso/sayso
-
-MONGOCHEF
-cd Downloads/mongochef-4.3.0-linux-x64-dist/bin/
-igniva-qa-17@ignivaqa17-H81M-S:~/Downloads/mongochef-4.3.0-linux-x64-dist/bin$ bash mongochef.sh 
-
-
-server 11_hour
-ssh lxigniva@192.168.0.235
-igniva@9876
-
-/usr/share/nginx/www/StyleNShop_Backend
-
-
-if error in fetching from server
-sudo chmod -R 777 11_hour/
-
-
-to start server
-pm2 start server.js --name quickdockets_node
-
-
-python -m SimpleHTTPServer 8000
-
-
-================================
-
-Eleventh hour live SSH Login Detail:-
-Server Public IP:    169.50.206.107
-User:                      root
-Password:              X8Zmth9r
-
-Mongo DB Detail:-
-DB:        elevenapilive
-User:     elevenapi
-Pswd:    Gt38TH2IPsdV7P
-
-DB:       elevenadmin
-User:    elevenadmi
-Pswd:   U48ThioQ0W0dH
-
-Port Detail:-
-
-admin.eleventhhourapp.com 5000
-api.eleventhhourapp.com      5001
-
-===========================================
-IGNITRACK LIVE CREDENTIALS
-
-Live ip : 169.50.75.236
-Username : root
-Password : K0L34H3~93h
-Port	 : 4444
-
-ssh root@169.50.75.236  -p 4444
-
-/var/www/html/ignitrack.ignivasolutions.com/Ignitrack
-
- Host:    169.50.75.236
-> DB:       ignitrack_live
-> User:    78ignitrck
-> Pswd:   Y1Un9HlOw3La
-
------------------------------------------------------
-
-SAYSO DB SCHEMA - gliffy link for sayso schema
-https://www.gliffy.com/go/share/so4cb0xnq0p7tydqpi7v
-
-
-style n shop DB SCHEMA - gliffy link for stylenshop schema
-https://go.gliffy.com/go/share/s2e0qrwysdjl6wr1hax0
-
-Virtual classroom
-https://go.gliffy.com/go/share/sq21j556om6y19dbwf2b
-
-
-
-Event Name – uploadMultiplefiles
-
-Purpose       : To send sayso with a pic to a user .
  
-Request       : Mandatory - 
-		1st parameter – file1
-		2nd parameter – file Extension
-		3rd parameter – file 2
-		4th parameter - fileExtension
-		5th parameter - json 
-		{	from – (user_id who is sending the message)
-			to -	(user_id to whom message is to be sent)
-			sent_time – (timestamp of current time)
-			duration (string) -OPTIONAL
-		}
-		
-Response    : 200 (success) , 400 (error)
+storingSkills: [function(cb) {
+
+    Utils.universalFunctions.logger('Check the skill id , see if user has already added that skill , storing the skills in the DB')
+
+    async.eachSeries(params.skillId, function(item, Incb) {
+
+            Utils.async.auto({
+                storingSkills: [function(cb) {
+
+                }]
+            }, function(err, result) {
+                Incb(err ? err : null, true)
+            })
+
+
+        },
+        function(err, result) {
+            cb(err ? err : null, result)
+        });
+
+}]
 
 
 
-killall -9 skype
 
 
-/etc/apt/sources.list.d# mongo
 
-const makeRequest = async () => {
-  console.log(await getJSON())
-  return "done"
+
+
+
+
+
+
+
+ function(data, cb) {
+
+  async.eachSeries(allProjects, function(item, Incb) {
+
+          async.waterfall([
+              function(c1) {
+
+              }
+          ], function(err, result) {
+              if (err) Incb(err);
+              Incb();
+          })
+
+
+      },
+      function(err, result) {
+          if (err) cb(err);
+          cb(null, data);
+      });
+},
+
+
+  var date = moment().tz("Asia/Kolkata").startOf('day').unix() 
+
+create_project: function(params, callback) {
+    Utils.async.waterfall([
+    function(){
+    
+    }
+    ], function(err, result) {
+            if (err) callback(err);
+            callback(null, result);
+        })
+        }
+
+        
+team_status_graph: function(params, callback) {
+        
+        async.waterfall([
+                function(cb) {
+                }
+            ],
+            function(err, result) {
+                if (err)
+                    callback(err);
+                else
+                    callback(null,result);
+            })
+    },
+
+
+
+field: {$gte: value} }
+
+$where: "this.phases.length ==0",type :1}
+
+
+
+async.eachSeries(processArr, function(item, Incb) {
+                        
+},
+function(err, result) {
+if (err) cb(err);
+cb(null, data);
+});
+
+
+ if (minutes >= 60) {
+
+   hours += Math.floor(minutes / 60);
+    minutes = minutes % 60;
 }
 
-makeRequest()
+if (hours < 10) { hours = "0" +hours }
+if (minutes < 10) { minutes = "0" + minutes }
 
-http://cloudwebsolutions.in/
+"invitee" : [ 
+        {
+            "is_mandatory" : 1,
+            "user_id" : "599c2d00ad18fa2d55214d1e"
+        }, 
+        {
+            "is_mandatory" : 1,
+            "user_id" : "598181430e58a04c3c146c12",
+            "time" : 1507636464,
+            "is_confirmed" : 1
+        }
+    ],
+
+
+///// CONVERT MINUTES TO HRS AND MINS
+var hours1 = Math.trunc(user_story_effort / 60);
+var minutes1 = user_story_effort % 60;
+
+if (hours1 < 10) {
+    hours1 = "0" + hours1
+}
+if (minutes1 < 10) {
+    minutes1 = "0" + minutes1
+}
+var y = hours1 + ":" + minutes1
+
+
+Project.find(query)
+  .populate({ 
+     path: 'pages',
+     populate: {
+       path: 'components',
+       model: 'Component'
+     } 
+  }) 
+
+
+  burned_hours = moment.duration(logged_time).asMinutes()
+
+  
+   var match = {
+      $match: {
+      "created_by": Mongoose.Types.ObjectId(item.user),
+      "created_at": { $gte: params.start_date, $lte: params.end_date },
+      "is_deleted": false,
+      "type": 3
+      }
+      };
+      var group = {
+      $group: {
+      "_id": { created_by: "$created_by" },
+      "task_hours": {
+          $sum: "$estimate_per_process.effort_estimate_hours",
+      },
+      "task_minutes": {
+          $sum: "$estimate_per_process.effort_estimate_minutes",
+      }
+      }
+      }
+
+
+      Models.tasks.tasks.aggregate([match, group]).exec(function(err, resp) {
+
+      if (err) cb(responses.systemError);
+      else {
+      }
+      });
 
 
 
@@ -152,3 +185,33 @@ http://cloudwebsolutions.in/
 
 
 
+
+      var options = {
+                        _id: "$_id",
+                        "total_estimations_hours": {
+                            $sum: "$estimations.effort_estimation_hours",
+                        },
+                        "total_estimations_minutes": {
+                            $sum: "$estimations.effort_estimation_minutes",
+                        },
+                        total_userstories: {
+                            $sum: 1
+                        },
+                        task_ids: {
+                            $push: "$estimations.task_id"
+                        }
+                    }
+
+                    var match = {};
+                    if (params.project_id)
+                        match.project_id = Mongoose.Types.ObjectId(params.project_id);
+                    if (params.phase_id)
+                        match.phase_id = Mongoose.Types.ObjectId(params.phase_id);
+
+                    Models.estimations.aggregate()
+                        .match(match)
+                        .unwind("$estimations")
+                        .group(options)
+                        .exec(function(err, resp) {
+                        }
+                        })

@@ -1,0 +1,52 @@
+<div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: true, delay: 200, minDuration: 200 }"></div>
+
+<h3 class="page-title">Rokkie Management</h3>
+
+<div class="panel">
+  <div class="panel-heading">
+
+    <div class="btn-group">
+      <a [routerLink]="['/rokkies']" class="btn btn-success">Rookie</a>
+      <a [routerLink]="['/usermangement']" class="btn btn-primary">Guru</a>
+    </div>
+    <br/>
+    <br/>
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <input type="text" class="form-control" (keyup)="onSearch($event)" placeholder="Search" />
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of records">
+            <td>{{list.firstName ? list.firstName : '-'}}</td>
+            <td>
+              <img *ngIf="list.profilePic" src="{{assetUrl + '' + list.profilePic}}" style="width:40px;" alt="">
+              <span *ngIf="!list.profilePic">-</span>
+            </td>
+            <th>{{list.userStatus ? list.userStatus : '-'}}</th>
+          </tr>
+          <tr>
+            <td colspan="6">
+
+              <div class="alert alert-danger" *ngIf="total == 0" role="alert">
+                No results found
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<pagination *ngIf="total > limit" [maxSize]="4" [totalItems]="total" [itemsPerPage]="limit" (pageChanged)="getAlluser($event)"></pagination>

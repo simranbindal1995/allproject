@@ -1,0 +1,73 @@
+signUp: function(params, callback) {
+        Utils.async.auto({
+            checkEmail: [function(cb) {}],
+            getTotalTask: [function(cb) {}],
+        }, function(err, result) {
+            callback(err ? err : null, result);
+        });
+    }
+
+
+
+signUp: function(req, callback) {
+
+        Utils.async.auto({
+                getProject: [function(cb) {
+
+                }],
+
+            },
+            function(err, res) {
+                if (err) {
+                    callback(err)
+                } else {
+                    callback(null, res)
+                }
+            });
+
+    }
+
+
+
+
+
+login: async (request) => {
+        const result = await userModel.find(request)
+        console.log('+**********************',result)
+        return true;
+    },
+    signUp: async (request) => {
+       
+       try{
+       		const result = await userModel.findOne({email : request.email})
+
+        	console.log('find one query=========',result)
+
+	        if(result == null){
+
+	        	const result = await userModel({email :request.email,password : request.password}).save()
+
+	        	if(result){
+	        		 // make access token
+	        		 if(token){
+	        		 	//update DB 
+	        		 }
+	        	}
+
+	      		
+	        }else{
+	        	const errObj = {
+	        		statusCode: 103,
+	        		status:"Error",
+	        		message:"Email already present"
+	        	}
+
+	        	throw errObj
+
+	        }
+
+       }catch(err){
+       		return err
+       }
+
+    }

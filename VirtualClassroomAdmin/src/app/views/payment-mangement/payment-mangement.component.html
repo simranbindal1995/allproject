@@ -1,0 +1,71 @@
+<div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: true, delay: 200, minDuration: 200 }"></div>
+<h3 class="page-title">Payment Management</h3>
+<div class="panel">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="panel-title">One - One Lession</h3>
+      </div>
+      <div class="col-md-6 text-right">
+        <a [routerLink]="['/payment-group']" class="btn btn-primary">Group Lession</a>
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="btn-group" role="group">
+          <a [routerLink]="['/payment']" (click)="onRoute($event)" class="btn btn-success">Total</a>
+          <a [routerLink]="['/payment-oneMonth']" class="btn btn-primary">This Month</a>
+          <a [routerLink]="['/payment-oneWeek']" class="btn btn-primary">This Week</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="gp-btn">
+          <span class="btn btn-default" (click)="graphView($event)">Graphical View</span>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" *ngIf="!isVisible">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Rookie Paid</th>
+            <th>Tutor Earning</th>
+            <th>Admin Earning</th>
+          </tr>
+          <tr *ngFor="let list of records">
+            <td>
+              {{list.transactionDate * 1000 | date:'yyyy-MMM-dd'}}
+            </td>
+            <td>{{list.subject ? list.subject : '-'}}</td>
+            <td>&pound; {{list.rookiePaid ? list.rookiePaid : '-'}}</td>
+            <td>&pound; {{list.tutorEarning ? list.tutorEarning : '-'}}</td>
+            <td>&pound; {{list.adminEarning ? list.adminEarning : '-'}}</td>
+
+          </tr>
+          <td colspan="5">
+
+            <div class="alert alert-danger" *ngIf="total == 0" role="alert">
+              No results found
+            </div>
+          </td>
+        </thead>
+      </table>
+    </div>
+    <div *ngIf="isVisible">
+      <div class="chart-container" style=" max-width: 1000px;
+      height:500px">
+        <chart [type]="chardata.type" [data]="chardata.data" [options]="chardata.options"></chart>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination *ngIf="total > limit && !isVisible " [maxSize]="4" [totalItems]="total" [itemsPerPage]="limit" (pageChanged)="getAllrecords($event)"></pagination>

@@ -1,0 +1,53 @@
+<!-- LEFT SIDEBAR -->
+<div id="sidebar-nav" class="sidebar">
+  <div class="sidebar-scroll">
+    <nav>
+      <ul class="nav">
+        <li>
+          <a [routerLink]="['/usermangement']" [ngClass]="{'active': router.url === '/rokkies' || router.url === '/usermangement'}">
+
+            <span>User Mangement</span>
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['/payment']" [ngClass]="{'active': router.url === '/payment' || router.url === '/payment-oneMonth' || router.url === '/payment-oneWeek'
+        || router.url === '/payment-group' || router.url === '/payment-group-oneMonth' || router.url === '/payment-group-oneWeek' }">
+            <span>Payment Mangement</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/skills']" [ngClass]="{'active': router.url === '/skills' || router.url === '/skill-list'}">
+            <span>Skills Mangement</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/disputemanagement']" routerLinkActive="active">
+            <span>Dispute Mangement</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/change-password']" routerLinkActive="active">
+            <span>Change Password</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/pagemanagement']" routerLinkActive="active">
+            <span>Pages Management</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/add-subject']" routerLinkActive="active">
+            <span>Add Subject</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void" (click)="authService.logout()" class="">
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- END LEFT SIDEBAR -->

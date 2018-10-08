@@ -1,0 +1,56 @@
+<div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: true, delay: 200, minDuration: 200 }"></div>
+<h3 class="page-title" *ngIf="pageType.type == 1">About us</h3>
+<h3 class="page-title" *ngIf="pageType.type == 2">Terms &amp; Condtions</h3>
+<h3 class="page-title" *ngIf="pageType.type == 3">Privacy Policy</h3>
+<h3 class="page-title" *ngIf="pageType.type == 4">How it Works guru</h3>
+<h3 class="page-title" *ngIf="pageType.type == 5">How it Works rookie</h3>
+
+<h3 class="page-title" *ngIf="pageType.type == 6">FaqList</h3>
+
+<div class="panel">
+  <div class="panel-heading" *ngIf="pageType.type == 6">
+    <a [routerLink]="['/add-faq']" class="btn btn-success">Add new Faq</a>
+  </div>
+  <div class="panel-body">
+    <form #userForm="ngForm" (ngSubmit)="userForm.valid ? pageUpdate() : '' " novalidate *ngIf="pageType.type!=6">
+
+      <div class="form-group">
+
+        <textarea [froalaEditor]='options' [froalaEditor] #text="ngModel" [(ngModel)]="pageModel.content" name="text" class="form-control"
+          required> </textarea>
+
+        <div *ngIf="text.invalid && (text.dirty || text.touched || userForm.submitted)" class="text-danger">
+          <div *ngIf="text.errors.required">
+            Content is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">UPDATE PAGE</button>
+      </div>
+    </form>
+
+    <table class="table table-bordered" *ngIf="pageType.type == 6">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Action</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of records">
+          <td>
+            {{list.question ? list.question : '-'}}
+          </td>
+          <td>
+            <a [routerLink]="['/update-faq', list._id]" class="label label-primary pointer">Edit</a>
+            <span class=" label label-danger pointer" (click)="deleteFaq(list._id)">Delete</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>

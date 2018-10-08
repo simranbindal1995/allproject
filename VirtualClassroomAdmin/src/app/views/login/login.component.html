@@ -1,0 +1,50 @@
+<div class="vertical-align-wrap">
+  <div class="vertical-align-middle">
+    <div class="auth-box ">
+
+      <div class="content">
+        <div class="header">
+          <div class="logo text-center">
+            <img src="assets/img/logo.png" alt="Logo" />
+          </div>
+          <p class="lead">Login to your account</p>
+        </div>
+        <form class="form-auth-small" (ngSubmit)="loginForm.valid ? onLogin() : ''" #loginForm="ngForm" novalidate>
+          <div class="form-group">
+            <label class="control-label sr-only">Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="userModel.email" #email="ngModel" [pattern]="emailPattern"
+              required email placeholder="Email" />
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors.required">Email is required</div>
+            </div>
+            <div *ngIf="email.errors?.pattern" class="text-danger">
+              Email must be a valid email address
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signin-password" class="control-label sr-only">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="userModel.password" #password="ngModel" required
+              password placeholder="Password">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+              <div *ngIf="password.errors.required">password is required</div>
+            </div>
+
+          </div>
+          <div class="form-group clearfix">
+            <label class="fancy-checkbox element-left">
+              <input type="checkbox">
+              <span>Remember me</span>
+            </label>
+          </div>
+          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+          <div class="bottom">
+            <span class="helper-text">
+              <span class="pointer" (click)="onForgotPassword()">Forgot password?</span>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

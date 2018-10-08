@@ -1,0 +1,33 @@
+<h3 class="page-title">Add faq</h3>
+
+<div class="panel">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <form (ngSubmit)="faqform.valid ? addfaq() : ''" #faqform="ngForm" novalidate>
+          <div class="form-group">
+            <label>Question</label>
+            <input type="text" class="form-control" placeholder="Enter Question" name="question" [(ngModel)]="userModel.question" #question="ngModel"
+              required question>
+
+            <div *ngIf="question.invalid && (question.dirty || question.touched)" class="text-danger">
+              <div *ngIf="question.errors.required">Question is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Answer</label>
+            <textarea cols="10" rows="10" class="form-control" name="answer" [(ngModel)]="userModel.answer" #answer="ngModel" required
+              answer></textarea>
+            <div *ngIf="answer.invalid && (answer.dirty || answer.touched)" class="text-danger">
+              <div *ngIf="answer.errors.required">Answer is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

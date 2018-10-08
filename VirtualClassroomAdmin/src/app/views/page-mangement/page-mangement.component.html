@@ -1,0 +1,54 @@
+<div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: true, delay: 200, minDuration: 200 }"></div>
+<h3 class="page-title">Pages Management</h3>
+
+<div class="panel">
+
+  <div class="panel-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>About Us</td>
+          <td>
+            <a [routerLink]="['/page-edit', '1']" class="label label-primary ">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Terms &amp; Condtions</td>
+          <td>
+            <a [routerLink]="['/page-edit', '2']" class="label label-primary ">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Privacy Policy</td>
+          <td>
+            <a [routerLink]="['/page-edit', '3']" class="label label-primary ">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>How it Works guru</td>
+          <td>
+            <a [routerLink]="['/page-edit', '4']" class="label label-primary ">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>How it Works rookie</td>
+          <td>
+            <a [routerLink]="['/page-edit', '5']" class="label label-primary">Edit</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Faq</td>
+          <td>
+            <a [routerLink]="['/page-edit', '6']" class="label label-primary">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

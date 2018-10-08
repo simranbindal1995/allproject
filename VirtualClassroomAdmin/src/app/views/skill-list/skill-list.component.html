@@ -1,0 +1,54 @@
+<div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: true, delay: 2000, minDuration: 200 }"></div>
+<h3 class="page-title">Skill Mangement</h3>
+
+<div class="panel">
+  <div class="panel-heading">
+
+    <div class="btn-group">
+      <a [routerLink]="['/skills']" class="btn btn-primary">Requested New</a>
+      <a [routerLink]="['/skill-list']" class="btn btn-success">Adeed</a>
+    </div>
+
+    <br/>
+
+
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr .No.</th>
+            <th>Skill Category</th>
+            <th>Skill</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of records ;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{list.parent.name ? list.parent.name : '-'}}</td>
+            <td>{{list.name ? list.name : '-'}}</td>
+            <td>{{list.description ? list.description : '-'}}</td>
+            <td>
+              <span *ngIf="list.is_approved == true" class="label label-success pointer"> Verified
+                <i class="fa fa-check"></i>
+              </span>
+
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">
+
+              <div class="alert alert-danger" *ngIf="total == 0" role="alert">
+                No results found
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<pagination *ngIf="total > limit" [maxSize]="4" [totalItems]="total" [itemsPerPage]="limit" (pageChanged)="getAllskills($event)"></pagination>
