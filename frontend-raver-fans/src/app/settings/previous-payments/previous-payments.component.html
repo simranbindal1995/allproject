@@ -1,0 +1,49 @@
+<div class="password">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/settings/payment-details']"> Payment >> </a>
+      </li>
+      <li class="breadcrumb-item active"> View Past Listing </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Bill Date</th>
+        <th>Billing period</th>
+        <th>Total followers</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions| paginate: { itemsPerPage: 5, totalItems: totalTransactions, currentPage:currentPage }">
+        <td> {{transaction.bill_date * 1000 | date:'dd MMM yyyy'}}</td>
+        <td> {{transaction.start_date* 1000 | date:'dd MMM yyyy'}} to {{transaction.end_date* 1000 | date:'dd MMM yyyy'}} </td>
+        <td> {{transaction.followers}} </td>
+        <td> GBP {{transaction.amount}} </td>
+        <td> {{transaction.is_paid ? 'Paid':'Pending'}} </td>
+        <td>
+          <span class="icon-down" *ngIf="transaction.is_paid"></span>
+          <span *ngIf="transaction.is_paid">
+            Invoice
+          </span>
+        </td>
+      </tr>
+      <tr *ngIf="transactions.length ==0">
+        <td colspan="6" style="text-align: center">
+          No transaction to show
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+<pagination-controls *ngIf="totalTransactions>0" (pageChange)="currentPage = $event"></pagination-controls>
+<!-- *ngIf="totalTransactions > limit"  (click)="getTransactions()"-->

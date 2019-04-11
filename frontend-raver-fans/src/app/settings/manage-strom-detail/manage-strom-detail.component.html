@@ -1,0 +1,60 @@
+<div class="password">
+  <div class="top_strom">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/settings/manage-strom']"> Manange Storm >> </a>
+      </li>
+      <li class="breadcrumb-item active"> Details </li>
+    </ol>
+   
+  </nav>
+  <select class="selectpicker" tabindex="-98" [(ngModel)]="status" #statusModel="ngModel" (change)="changeStatus($event.target.value)">
+      <option value="1" hidden="initMessage.status== 2">Open</option>
+      <option value="2">Close</option>
+      <option value="3">Under Investigation</option>
+    </select>
+    </div>
+  <div class="account_detail strom">
+    <h2> Storms Subject :<i>{{initMessage.subject | captaliseText}}</i>
+      <span> {{initMessage.created_at*1000| date:'dd/MM/yy'}} </span>
+    </h2>
+    <div class="strom_inner">
+
+      <div class="top_heading">
+        <p> Type: {{initMessage.type== 1? 'Query': 'Complaint'}} </p>
+        <!-- <p> Status: {{initMessage.status== 1? 'Open':initMessage.status == 2? 'Close': 'Under Investigation'}} </p> -->
+        <p> Priority: {{initMessage.priority== 1? 'Low': 'High'}} </p>
+      </div>
+
+      <p> {{initMessage.descriptions}} </p>
+      <!-- <div class="bottom_icon">
+        <select class="selectpicker" tabindex="-98" [(ngModel)]="status" #statusModel="ngModel" (click)="changeStatus($event.target.value)">
+          <option value="1" hidden="initMessage.status== 2">Open</option>
+          <option value="3" hidden="initMessage.status== 2">Under Investigation</option>
+          <option value="2">Close</option>
+        </select>
+      </div> -->
+
+    </div>
+  </div>
+  <div class="strom_reply">
+    <div class="strom_top">
+      <div class="strom_chat" [ngClass]="{'right':userInfo._id == data.created_by._id , 'left':userInfo._id != data.created_by._id }"
+        *ngFor="let data of stromData">
+        <p>{{data.descriptions}}</p>
+      </div>
+
+    </div>
+    <div class="strom_message">
+      <div class="form-group">
+        <textarea type="text" class="form-control" placeholder="write here..." [(ngModel)]="reply" #ctrl="ngModel" ></textarea>
+        <div class="send_strom">
+          <span class="icon-send-button" (click)="replyOnStrom()"> </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentStormOpen'" [closeButtonId]="'modalComponentStormClose'" #modalComponentStorm></app-modal>

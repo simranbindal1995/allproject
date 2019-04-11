@@ -1,0 +1,67 @@
+// Background Cover Mixin
+// @include bg_cover;
+@mixin bg_cover($size:cover, $position: center center, $repeat: no-repeat){
+    @if $repeat == 'repeat'{
+        background-size: $size;
+        background-position: $position;
+        background-repeat: repeat;
+    } @else if $position == 'top left'{
+        background-size: $size;
+        background-position:top left;
+        background-repeat: $repeat;
+    } @else if $position == 'top center'{
+        background-size: $size;
+        background-position:top center;
+        background-repeat: $repeat;
+    } @else if $position == 'bottom center'{
+        background-size: $size;
+        background-position:bottom center;
+        background-repeat: $repeat;
+    } @else{
+        background-size: $size;
+        background-position: $position;
+        background-repeat: $repeat;
+    }
+}
+
+// BACKGROUND REPEAT
+// @include bg_rp('name.png');
+@mixin bg_rp($url, $color: transparent, $repeat: repeat, $position: top left) {
+    background: $color url(#{$url}) $repeat $position;
+}
+
+
+// BACKGROUND NO-REPEAT
+// @include bg_norp('name.png');
+@mixin bg_norp($url, $color: transparent, $repeat: no-repeat, $position: center center, $size: cover) {
+    background: $color url(#{$url}) $repeat $position;
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    -o-background-size: $size;
+    background-size: $size;  
+}
+
+// BACKGROUND COVER
+// @include cover-bg('name.png');
+@mixin cover-bg($url, $background-top:"center", $background-left:"center") {
+    background: url(#{$url}) no-repeat unquote($background-top) unquote($background-left); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+}
+
+// Background Image Mixin
+// @include bg_image('#{$url}name.png');
+@mixin bg_image($url){
+    background-image: url(#{$url});
+}
+
+//Background color
+// @include bg-color(#fff);
+@mixin bg-color($baseColor){
+    background-color: $baseColor;
+    &:hover{
+        background-color: darken($baseColor, 5%) 
+    }
+}

@@ -1,0 +1,20 @@
+<div class="follow_right float-right">
+  <h4>Rating by Fans</h4>
+  <div class="follow_inner">
+    <div class="follow_user" *ngFor="let rating of getRatingData">
+      <div class="media" [routerLink]="['/follower/profile',rating.user_id._id]" routerLinkActive="active">
+        <div class="follow_profile">
+          <img src="{{rating.user_id.profile_pic?(rating.user_id.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}" class="img-fluid"> </div>
+        <div class="media-body align-self-center">
+          <h3> {{rating.user_id.userName}} </h3>
+          <div class="_rating">
+            <rating [(ngModel)]="rating.rating" [max]="max" [readonly]="isReadonly"></rating>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="post_no no_post">
+    <p *ngIf="totalCount == 0"> No Rating.</p>
+  </div>
+</div>

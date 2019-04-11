@@ -1,0 +1,25 @@
+<div class="tab_outer" style="display: block;">
+  <div class="analytics_tab">
+    <span> Analytics </span>
+    <ul class="tabs">
+      <li>
+        <a [routerLink]="['/settings/analytics','PAST_HOUR']" routerLinkActive="active" (click)="filterType = 1;getChartsData()"> Past Hour </a>
+      </li>
+      <li>
+        <a [routerLink]="['/settings/analytics','PAST_DAY']" routerLinkActive="active" (click)="filterType = 3;getChartsData()"> Past Day </a>
+      </li>
+      <li>
+        <a [routerLink]="['/settings/analytics','PAST_WEEK']" routerLinkActive="active" (click)="filterType = 2;getChartsData()"> Past Week </a>
+      </li>
+      <li>
+        <a [routerLink]="['/settings/analytics','PAST_MONTH']" routerLinkActive="active" (click)="filterType = 4;getChartsData()"> Past Month </a>
+      </li>
+    </ul>
+  </div>
+  <div *ngFor="let chart of charts">
+    <canvas baseChart width="400" height="400" [datasets]="chart.data" [labels]="chart.labels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+      <!-- (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)" -->
+    </canvas>
+  </div>
+</div>

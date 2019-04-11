@@ -1,0 +1,157 @@
+<div class="follower_main home_main">
+  <div class="container">
+    <div class="follower_outer">
+      <div class="banner" [ngStyle]="{background: 'url('+cover_pic_path+')'}">
+        <div class="change_cover">
+          <span class="btn-file" [hidden]="isOtherBrand">
+            <span class="icon-camera"> </span>
+            <input style="cursor: pointer;" type="file" #myInput1 id="fileInputId1" (change)="fileChangeListener($event,true)" />
+          </span>
+        </div>
+        <div class="profile_name">
+          <div class="prfile_img">
+            <img src="{{profile_pic_path?(profile_pic_path):'assets/images/default-profile.png'}}">
+            <span class="btn-file" [hidden]="isOtherBrand">
+              <span class="icon-camera"> </span>
+              <input style="cursor: pointer;" type="file" accept=".jpg,.jpeg,.png" #myInput2 id="fileInputId2" (change)="fileChangeListener($event,false)">
+            </span>
+          </div>
+        </div>
+        <h1>{{profileData.userName | captaliseText}} </h1>
+      </div>
+      <div class="follow_tab">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" [routerLink]="['/brand/profile']" routerLinkActive="active" role="tab" aria-controls="home">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" [routerLink]="['/brand/rating']" routerLinkActive="active" role="tab" aria-controls="profile">Rating</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" [routerLink]="['/brand/followers']" routerLinkActive="active" role="tab" aria-controls="profile">Followers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" [routerLink]="['/brand/photos']" routerLinkActive="active" role="tab" aria-controls="profile">Photos</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="Profile" role="tabpanel">
+            <div class="follow_tab">
+              <div class="follow_left float-left">
+                <div class="brand_title" *ngIf="!isEditMode && isOtherBrand == false">
+                  <h4 style="cursor: pointer;" (click)="isEditMode=!isEditMode;">
+                    <span class="icon-edit2"> </span>
+                  </h4>
+                </div>
+                <form [formGroup]="brandProfileForm" (ngSubmit)="saveProfile(false)">
+                  <div class="floating-label">
+                    <textarea [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" formControlName="brand_description" placeholder="" rows="4" style="height: auto;"></textarea>
+
+                    <!-- <input [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" type="text" formControlName="brand_description" placeholder=" "> -->
+                    <span class="highlight"></span>
+                    <label>Brand Description</label>
+                    <small id="emailHelp" class="text-danger" *ngIf="brandProfileForm.controls.brand_description.errors && brandProfileForm.controls.brand_description.errors.required 
+                        && (brandProfileForm.controls.brand_description.dirty || brandProfileForm.controls.brand_description.touched || brandProfileFormSubmitted)">
+                      Brand Description is required</small>
+                  </div>
+                  <div class="floating-label">
+                    <input [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" formControlName="brand_url" type="text" placeholder=" ">
+                    <span class="highlight"></span>
+                    <label>Brand URL</label>
+                    <small id="emailHelp" class="text-danger" *ngIf="brandProfileForm.controls.brand_url.errors 
+                        && brandProfileForm.controls.brand_url.errors.required 
+                        && (brandProfileForm.controls.brand_url.dirty || brandProfileForm.controls.brand_url.touched || brandProfileFormSubmitted)">
+                      Brand URL is required</small>
+                    <small id="emailHelp" class="text-danger" *ngIf="(brandProfileForm.controls.brand_url.errors && !brandProfileForm.controls.brand_url.errors.required) 
+                             && (brandProfileForm.controls.brand_url.invalid && (brandProfileForm.controls.brand_url.dirty || brandProfileForm.controls.brand_url.touched || brandProfileFormSubmitted))">
+                      Brand URL is invalid
+                    </small>
+                  </div>
+                  <div class="floating-label">
+                    <input [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" type="text" formControlName="phone_number" placeholder=" ">
+                    <span class="highlight"></span>
+                    <label>Phone number</label>
+                    <small id="emailHelp" class="text-danger" *ngIf="brandProfileForm.controls.phone_number.errors 
+                        && brandProfileForm.controls.phone_number.errors.required 
+                        && (brandProfileForm.controls.phone_number.dirty || brandProfileForm.controls.phone_number.touched || brandProfileFormSubmitted)">
+                      Phone number is required</small>
+                    <small id="emailHelp" class="text-danger" *ngIf="(brandProfileForm.controls.phone_number.errors && !brandProfileForm.controls.phone_number.errors.required) 
+                            && (brandProfileForm.controls.phone_number.invalid && (brandProfileForm.controls.phone_number.dirty || brandProfileForm.controls.phone_number.touched || brandProfileFormSubmitted))">
+                      Phone number is invalid
+                    </small>
+                  </div>
+                  <div class="floating-label">
+                    <input readonly [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" type="text" [value]="category|capitalizefirst" placeholder=" ">
+                    <!-- <select class="selectpicker floating-input" formControlName="category" tabindex="-98">
+                        <option selected disabled value="">Brand Category</option>
+                        <option *ngFor="let interest of interests" [value]=interest._id>{{interest.interest_name|capitalizefirst}}</option>
+                    </select> -->
+                    <span class="highlight"></span>
+                    <label>Brand Category</label>
+                  </div>
+                  <div class="floating-label">
+                    <input [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" type="text" formControlName="address" placeholder="">
+                    <span class="highlight"></span>
+                    <label>Brand Address</label>
+                    <small id="emailHelp" class="text-danger" *ngIf="brandProfileForm.controls.address.errors 
+                        && brandProfileForm.controls.address.errors.required 
+                        && (brandProfileForm.controls.address.dirty ||
+                         brandProfileForm.controls.address.touched || brandProfileFormSubmitted)">
+                      Brand Address is required</small>
+                  </div>
+                  <div class="floating-label">
+                    <input [attr.disabled]="!isEditMode?'':null && isOtherBrand?'':null" class="floating-input" type="text" formControlName="country" placeholder=" ">
+                    <span class="highlight"></span>
+                    <label>Brand Country</label>
+                    <small class="text-danger" *ngIf="brandProfileForm.controls.country.errors 
+                    && brandProfileForm.controls.country.errors.required 
+                    && (brandProfileForm.controls.country.dirty ||
+                     brandProfileForm.controls.country.touched || brandProfileFormSubmitted)">
+                      Brand Country is required</small>
+                  </div>
+                  <!-- <div class="follow_map">
+                    <!- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54891.42554439708!2d76.66236106308125!3d30.698319302068263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fee906da6f81f%3A0x512998f16ce508d8!2sSahibzada+Ajit+Singh+Nagar%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1517556102589"
+                      frameborder="0" style="border:0" allowfullscreen></iframe> 
+                  </div> -->
+                  <div class="login_btn">
+                    <button class="button_main pull-right " *ngIf="isEditMode&& !isOtherBrand" type="submit" (click)="brandProfileFormSubmitted = true;">
+                      Submit </button>
+                    <button class="button_main pull-right" *ngIf="isEditMode&& !isOtherBrand" type="button" (click)="isEditMode=!isEditMode">
+                      Cancel </button>
+                  </div>
+                  <div class="login_btn">
+                  </div>
+                </form>
+              </div>
+              <router-outlet> </router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" id="imageCropperModalShowButton" [hidden]="true" (click)="imageCropper.show()"></button>
+<div class="modal fade" [config]="{backdrop: 'static'}" bsModal #imageCropper="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog" [ngClass]="{'modal-lg':isCoverImage}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center">Crop {{isCoverImage?'cover':'profile'}} picture</h5>
+        <button type="button" class="close" data-dismiss="modal" id="imageCropperModalHideButton" (click)="imageCropper.hide()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img-cropper [hidden]="!isCoverImage" [image]="croppedImage" #cropperCover [settings]="cropperSettingsForCoverImage"></img-cropper>
+          <img-cropper [hidden]="isCoverImage" [image]="croppedImage" #cropper [settings]="cropperSettings"></img-cropper>
+          <br>
+          <img [src]="croppedImage.image" [hidden]="!isCoverImage" [width]="cropperSettingsForCoverImage.croppedWidth" [height]="cropperSettingsForCoverImage.croppedHeight">
+          <img [src]="croppedImage.image" [hidden]="isCoverImage" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+          <div class="corping_btn">
+            <button *ngIf="cropperReady" class="button_main" style="width: 98px;height: 48px;padding: 0 0 0 0;margin: 0 0 0 0;" (click)="setProfilePic()">Crop</button>
+            <button *ngIf="cropperReady" class="button_main" style="width: 98px;height: 48px;padding: 0 0 0 0;margin: 0 0 0 0;" (click)="imageCropper.hide()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

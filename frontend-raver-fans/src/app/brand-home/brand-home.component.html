@@ -1,0 +1,193 @@
+<div id="banner" class="brand">
+  <div class="banner_text sign_up">
+    <div class="container">
+      <h2> It all starts with your fans to build a sustainable Business. 
+        Connect, network, create and share contents, solve problems, 
+        create exceptional customer service, gain intelligence and Reward.       </h2>
+      <h3>  6 month <span> free </span> trial period  </h3>
+    </div>
+  </div>
+</div>
+<!-- end banner and header-->
+<div class="register_content">
+  <div class="container">
+    <h3>  ‘Evangelism Marketing’ or word of mouth is a very powerful and the most
+                 effective marketing strategy.  Turn your ORDINARY Fans into SUPER Fans, 
+                who will in turn self-promote your services to the world’   </h3>
+    <div class="reward_point">
+      <p> - Reward your fans for being loyal - Vouchers, Promotions, Deals, Invitations, Coupons.</p>
+      <p> - Improve and provide a customer service that reacts quickly to problems.</p>
+      <p> - Save cost on traditional advertising. Your Fans promote your services.</p>
+      <p> - Identify your target market and Increase retention.</p>
+      <p> - Improve acquisition.</p>
+      <p> - Expand your reach, develop a loyal customer base, and Improve repeat visits.</p>
+      <p> - Improve sales.</p>
+      <p> - Achieve your prospect of knowing who your real Fans are, gain other insights and build Trust. </p>
+    </div>
+    <a   (click)="login.hide();form1.reset();signup.show()" class="button_main"> REGISTER </a>
+  </div>
+</div>
+<!-- login -->
+<button (click)="login.hide()" hidden id="hideLoginPopup"></button>
+<div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #login="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="login.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="login_form">
+          <h2> Log in </h2>
+          <p class="alert alert-danger" *ngIf="loginErrorMessage">{{loginErrorMessage}}</p>
+          <form data-ng-init="loginSubmission=false" novalidate (ngSubmit)="loginFormSubmit(form,$event)" #form="ngForm">
+            <div class="floating-label">
+              <input required class="floating-input" type="email" placeholder=" " [(ngModel)]="loginformData.email" name="email" #email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$">
+              <small class="text-danger">{{emailError}}</small>
+              <span class="highlight"></span>
+              <label>Email Address</label>
+            </div>
+            <div class="floating-label">
+              <input class="floating-input" required type="password" id="loginPassword" #loginPassword placeholder=" " [(ngModel)]="loginformData.password" name="loginPassword" #loginPassword="ngModel">
+              <span class="highlight"></span>
+              <label>Password</label>
+              <span [ngClass]="{'icon-eye': typeVisible == 2,'icon-view': typeVisible == 1}" (click)="toggleVisibilityLogin()"></span>
+              <small class="text-danger">{{passError}}</small>
+            </div>
+            <!-- <div class="check_box">
+                  <label>
+                    <input class="radio-inline" name="radios" value="" type="checkbox">
+                    <span class="outside">
+                      <span class="inside"></span>
+                    </span> Remember me </label>
+                </div> -->
+            <div class="login_btn">
+              <input type="submit" class="button_main" (click)="loginSubmission= true" value="Log In">
+              <a class="forgot_password" (click)="login.hide();forgotFormSubmitted= false;forgotPassword.show()">
+                    Forgot Password </a>
+              <p> New Here?
+                <a (click)="login.hide();formSubmitted=false;form1.reset();signup.show()"> Sign Up </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- signup -->
+<button (click)="signup.hide()" hidden id="hideSignUp"></button>
+<div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #signup="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="signup.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="login_form">
+          <h2> Sign up </h2>
+          <form novalidate (ngSubmit)="signUpFormSubmit(form1,$event)" #form1="ngForm">
+            <p class="alert alert-success" *ngIf="singUpSucessMessage && formSubmitted">{{singUpSucessMessage}}</p>
+            <p class="alert alert-danger" *ngIf="singUpErrorMessage && formSubmitted">{{singUpErrorMessage}}</p>
+            <div class="floating-label">
+              <input required class="floating-input" type="text" placeholder=" " [(ngModel)]="singUpformData.brandName" name="brandName" #brandName="ngModel">
+              <small class="text-danger" [hidden]="formSubmitted==false" *ngIf="!singUpformData.brandName && (brandName.dirty || formSubmitted)">Brand name is required.</small>
+              <span class="text-danger" class="highlight"></span>
+              <label>Brand Name</label>
+            </div>
+            <div class="floating-label">
+              <input required class="floating-input" type="email" placeholder=" " [(ngModel)]="singUpformData.email" name="email" #email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$">
+              <small class="text-danger" [hidden]="email.valid || (email.untouched && formSubmitted==false)" *ngIf="email.errors?.required">Email is required</small>
+              <small class="text-danger" *ngIf="email.errors?.pattern && email.invalid">Please enter the valid email address.</small>
+              <span class="highlight"></span>
+              <label>Email Address</label>
+            </div>
+            <div class="floating-label">
+              <input required class="floating-input" id="password" #password type="password" placeholder=" " [(ngModel)]="singUpformData.password" name="password" #password="ngModel">
+              <!-- <small class="text-danger" [hidden]="password.valid || (password.untouched && formSubmitted==false)" *ngIf="password.errors?.required">Password is required</small> -->
+              <small class="text-danger" [hidden]="formSubmitted==false" *ngIf="!singUpformData.password && (password.dirty || formSubmitted)">Password is required.</small>
+              <span class="highlight"></span>
+              <label>Password </label>
+              <span [ngClass]="{'icon-eye': typeVisibleSignUp == 2,'icon-view': typeVisibleSignUp == 1}" (click)="toggleVisibility()"></span>
+            </div>
+            <div class="floating-label confirm">
+              <input required class="floating-input" #confirmPassword type="password" placeholder=" " [(ngModel)]="singUpformData.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
+              <small class="text-danger" [hidden]="confirmPassword.valid || (confirmPassword.untouched && formSubmitted==false)" *ngIf="confirmPassword.errors?.required">
+                    Confirm Password is required</small>
+              <span class="highlight"></span>
+              <label>Confirm Password </label>
+              <span [ngClass]="{'icon-eye': typeVisible1 == 2,'icon-view': typeVisible1 == 1}" (click)="toggleConfirmVisibility()"></span>
+              <small class="text-danger" *ngIf="singUpformData.confirmPassword && singUpformData.confirmPassword != singUpformData.password">Your password and confirm password do not match.</small>
+            </div>
+            <p> Already have an account ?
+              <a (click)="signup.hide();form.reset();login.show()"> Log In </a>
+            </p>
+            <div class="check_box sign_up">
+              <label>
+                <input type="checkbox" required checked="checked" class="radio-inline" name="termsNConditions" [(ngModel)]="singUpformData.termsNConditions" #termsNConditions="ngModel">
+                <span class="outside">
+                      <span class="inside"></span>
+                </span> I agree to the
+                <a routerLink="/terms" (click)="showTerms()" routerLinkActive="active">Terms & Conditions</a>
+              </label>
+              <small class="text-danger" *ngIf="!singUpformData.termsNConditions && formSubmitted">
+                    Please agree to terms and condition.</small>
+            </div>
+            <div class="login_btn">
+              <input type="submit" (click)="formSubmitted= true" class="button_main" value="SIGN UP">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- forgot password -->
+<button (click)="forgotPassword.hide()" hidden id="hideforgot"></button>
+<div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #forgotPassword="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forgotPassword.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="login_form">
+          <h2> forgot Password </h2>
+          <p class="forogt_p">Enter registered email to reset your password.</p>
+          <p class="alert alert-success" *ngIf="forgotFormSubmitted==true && forgotSucessMessage">{{forgotSucessMessage}}</p>
+          <p class="alert alert-danger" *ngIf="forgotFormSubmitted==true && forgotErrorMessage">{{forgotErrorMessage}}</p>
+          <form [formGroup]="forgotForm" (ngSubmit)="forgotPasswordFunc()">
+            <div class="floating-label">
+              <input class="floating-input" required type="text" placeholder="" formControlName="email" name="email">
+              <span class="highlight"></span>
+              <label>Email Address</label>
+              <div class="login_btn">
+                <input type="submit" (click)="forgotFormSubmitted=true" class="button_main" value="Send request">
+              </div>
+            </div>
+            <p class="new_user"> New Here?
+              <a (click)="login.hide();forgotPassword.hide();formSubmitted=false;form1.reset();signup.show()"> Sign Up </a>
+            </p>
+          </form>
+          <!-- <p class="new_user"> New Here?
+                <a (click)="forgotPassword.hide();signup.show()"> Sign Up </a>
+              </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #successPassword>
+  <div class="modal-body">
+    <div class="login_form">
+      <p class="new_user success_text"> Please follow the link sent to your email for new password </p>
+      <a (click)="closeModal();"> OKay </a>
+    </div>
+  </div>
+</ng-template>
+<app-modal [openButtonId]="'modalComponentHomeOpen'" [closeButtonId]="'modalComponentHomeClose'" #modalComponentHome></app-modal>

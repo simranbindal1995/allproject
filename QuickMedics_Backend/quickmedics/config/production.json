@@ -1,0 +1,94 @@
+/* All the configuration to be used on the production server of the project*/
+
+{
+    "env":
+    {
+        "instance": "production"
+    },
+    "dbServer":
+    {
+        "url": "mongodb://192.168.0.241:27017/quickmedics",
+        "option":
+        {
+            "user": "quickmedics",
+            "pass": "ue3Uh394jd"
+        }
+    },
+    "token":
+    {
+        "secret": "quickmedics_ignivasolutions.com"
+    },
+    "webServer":
+    {
+        "port": 8077,
+        "host": "192.168.0.235",
+        "url": "http://quickmedics.ignivastaging.com:8077"
+    },
+    "bigBlueButtonSecretKey":
+    {
+        "key": "60d68b39963237117f48b801ab855232"
+    },
+    "logger":
+    {
+        "logStart": false,
+        "file":
+        {
+            "filename": "logs/logs.json",
+            "level": "silly",
+            "handleExceptions": true,
+            "json": true,
+            "maxsize": 512000,
+            "maxFiles": 5,
+            "colorize": false
+        },
+        "console":
+        {
+            "level": "debug",
+            "handleExceptions": true,
+            "json": false,
+            "colorize": true
+        },
+        "http":
+        {}
+    },
+    "email":
+    {
+        "service": "Gmail",
+        "auth":
+        {
+            "user": "ignivatesting2017@gmail.com",
+            "password": "igniva2017testing"
+        },
+        "from": "Quick Medics <ignivatesting2017@gmail.com>"
+    },
+    "queueServer":
+    {
+        "disabled": false,
+        "name": "offline",
+        "port": 6379,
+        "host": "127.0.0.1",
+        "ns": "offline",
+        "timeout": "30 * 60 * 1000",
+        "processors":
+        {
+            "dir": "processors",
+            "default":
+            {
+                "dir": "defaults",
+                "file": "default.js"
+            }
+        },
+        "context":
+        {
+            "serializer": "(ctx) => Promise.cast(ctx)",
+            "deserializer": "(ctx) => Promise.cast(ctx)",
+            "processors": "(ctx) => Promise.resolve(null)"
+        }
+    },
+    "stripe":
+    {
+        "secretKey": "sk_test_CA44J7RDeLFsgpRthGYz4opC",
+        "stripeCurrency": "gbp", //For UK
+        "adminComission": 15
+    }
+}

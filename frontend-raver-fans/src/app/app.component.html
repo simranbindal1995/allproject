@@ -1,0 +1,9 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!--The content below is only a placeholder and can be replaced.-->
+
+<app-header></app-header>
+<app-modal [openButtonId]="'modalComponentAppOpen'" [closeButtonId]="'modalComponentAppClose'" #modalComponentApp></app-modal>
+
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<app-footer *ngIf="_router.url !='/landing'"  [hidden]="!hidePostLoginFooter"></app-footer>
+<app-loader></app-loader>

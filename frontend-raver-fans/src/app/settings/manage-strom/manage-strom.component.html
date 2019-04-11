@@ -1,0 +1,45 @@
+<div class="strom_dropdown">
+  <!-- <select class="selectpicker float-right" tabindex="-98">
+    <option selected=""> Option </option>
+    <option>option 1</option>
+    <option>option 2</option>
+  </select> -->
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Subject </th>
+        <th> Description </th>
+        <th> Type </th>
+        <th> Priority</th>
+        <th> Date </th>
+        <th> Time</th>
+        <th> Status </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of stormsData  | paginate: { itemsPerPage: 10, currentPage: p,totalItems:totalCount }">
+        <td>
+          <a [routerLink]="['/settings/strom-detail',data._id]" routerLinkActive="active">{{data.subject | captaliseText}}</a>
+        </td>
+        <td>{{data.descriptions | captaliseText}} </td>
+        <td *ngIf="data.type==1">Query </td>
+        <td *ngIf="data.type==2">Complaint </td>
+        <td *ngIf="data.priority==1">Low </td>
+        <td *ngIf="data.priority==2">High </td>
+        <td>{{data.created_at*1000 | date:'dd/MM/yy'}}</td>
+        <td>{{data.created_at*1000 | date:'hh: mm a'}}</td>
+        <td *ngIf="data.status==1">Open </td>
+        <td *ngIf="data.status==2">Close </td>
+        <td *ngIf="data.status==3">Under Investigation</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="totalCount==0">
+    <div class="post_no no_post">
+      <I>No results found.</I>
+    </div>
+  </span>
+</div>
+<pagination-controls *ngIf="totalCount > 10" (pageChange)="p = $event" (click)="pageChanged(p)"></pagination-controls>

@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Fan Name</th>
+        <th> Email </th>
+        <th> Location </th>
+        <th> Rave Shared </th>
+        <th> Points Earned </th>
+        <th> Storm Created </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of getControlPanelData | paginate: { itemsPerPage: 10, currentPage: p,totalItems:totalCount }">
+        <td><a  [routerLink]="['/follower/profile',data._id]" routerLinkActive="active">{{data.userName | captaliseText}}</a></td>
+        <td>{{data.email | captaliseText}}</td>
+        <td>{{data.address | captaliseText}}</td>
+        <td>{{data.raveShared }}</td>
+        <td>{{data.pointEarned }}</td>
+        <td>{{data.stormCreated}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="totalCount==0">
+    <div class="post_no no_post">
+    <I>No results found.</I>
+  </div>
+  </span>
+  <pagination-controls *ngIf="totalCount > 10" (pageChange)="p = $event" (click)="pageChanged(p)"></pagination-controls>
+</div>

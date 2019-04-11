@@ -1,0 +1,13 @@
+<div class="follow_right float-right">
+  <h4>Photos {{totalCount}}</h4>
+  <div class="follow_inner">
+    <div class="photos_main" *ngFor="let data of followerMedia">
+      <a data-toggle="modal" data-dismiss="modal">
+        <img src="{{data.image? (data.image|toMediaUrl):'assets/images/photo1.jpg'}}"> </a>
+        <img *ngIf="data.video" src="{{'data:image/png;base64,'+data.video.thumbnail}}">
+    </div>
+    
+    <I *ngIf="totalCount==0">No Media.</I>
+    
+  </div>
+</div>

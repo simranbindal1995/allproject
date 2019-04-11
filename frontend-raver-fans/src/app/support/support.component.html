@@ -1,0 +1,30 @@
+<div class="float-left post_left" id="custom_support">
+  <div class="add_post">
+    <div class="make_post">
+      <p> Customer Support </p>
+    </div>
+    <form [formGroup]="customerSupportForm" (ngSubmit)="customerSupportForm.valid && customerSupport()" class="add_post_text overview">
+      <p> What are your queries? </p>
+      <div class="floating-label">
+        <select name="queryType" formControlName="queryType" class="selectpicker floating-input month float-left" tabindex="-98">
+          <option selected="" value="">Select</option>
+          <option value="0">Account Queries</option>
+          <option value="1">Payment Queries</option>
+          <option value="2">Fan Queries</option>
+          <option value="3">General Queries</option>
+          <option value="4">Report a bug or fault</option>
+          <option value="5">Others</option>
+        </select>
+        <small class="text-danger" *ngIf="customerSupportForm.controls.queryType.invalid && (customerSupportForm.controls.queryType.dirty || formSubmitted)">Query type is required.</small>
+      </div>
+      <div class="post_textarea">
+        <textarea class="form-control" name="query" formControlName="query" placeholder="Description" rows="5"></textarea>
+      </div>
+      <small class="text-danger" *ngIf="customerSupportForm.controls.query.invalid && (customerSupportForm.controls.query.dirty || formSubmitted)">Description is required.</small>
+      <div class="mange_btn">
+        <input type="submit" (click)="formSubmitted=true" class="button_main" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentRequestSupportOpen'" [closeButtonId]="'modalComponentRequestSupportClose'" #modalComponentRequestSupport></app-modal>

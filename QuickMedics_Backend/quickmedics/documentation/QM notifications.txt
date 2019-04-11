@@ -1,0 +1,26 @@
+Notifications
+
+Doctor side 
+
+*patient booking alterations need to be notified , click should navigate to relevent booking that has being altered   -RESCHEDULE DONE
+*pt adding any documents should be alerted ( this should go to the doctor last seen the patient )- alert should connect to dicument added === My correspondence
+*new bookings- (alerting drs; link to booking screen)		-DONE
+*upcoming sessions ( 24 hrs prior) -linking to sessions
+*cancelled sessions - just info					DONE
+*if sessions are fully booked - link to relevent bookings		?? No such functionality like fully booked
+*pasword change notification- ink to password page			?? why to sent this
+*profile approval- link to profile page
+*payment info validation/expiry - link to payment page			?? no such payment expiry
+*training profile reminders- link to traning/profile page		?? no training profiles
+
+
+PAtient side
+
+*booking confirmation- link to appointments screen (booked appts)		?? No confirmations on this portal
+*appt reminders 24 hr prior ( link to appts)
+*cancellations/alterations (link to appts)			-DONE
+*payments expiry, authorisation,invoicing  (link to payhment page - patients')	?? payment authorisation ? sending mails on invoicing
+*fit note, scripts and referral being received/sent to emails (just info)
+*any new documents uploaded from drs/admin side ( link to document section) 	?? which docs can admin add
+password change reminders (link to password page)				?? why to sent this
+

@@ -1,0 +1,125 @@
+<!-- <div class="amount_top" *ngIf="paymentDetails.result && !paymentDetails.result.length">
+    <div class="media">
+        <div class="media-body post_no">
+        <p>Lorem Ipsum is simply dummy text</p>
+        </div>
+    </div>
+</div> -->
+<div class="payment_amount">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="media">
+                <div class="media-left">
+                    <p>Payment due as per {{paymentDetails.due_as_per * 1000 | date:'dd MMM yyyy'}} </p>
+                </div>
+                <div class="media-body">
+                    <p>gbp {{paymentDetails.total_dues}}</p>
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-left">
+                    <p>Current month payment </p>
+                </div>
+                <div class="media-body">
+                    <p>gbp {{paymentDetails.current_amount}}</p>
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-left">
+                    <p>Previous dues </p>
+                </div>
+                <div class="media-body">
+                    <p>gbp {{paymentDetails.previous_amount}} </p>
+                </div>
+            </div>
+            <div class="total_number" *ngIf="paymentDetails.result && paymentDetails.result.length">
+                <table cellspacing="0" cellpadding="0" border="0" *ngFor="let data of paymentDetails.result">
+                    <tr>
+                        <td>Total number of followers ({{data.start_date*1000|date:'dd MMMM'}} - {{data.end_date*1000|date:'dd
+                            MMMM'}})
+                        </td>
+                        <td class="_total">{{data.followers}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount charged = {{data.percentage}}% of total followers</td>
+                        <td class="_total"></td>
+                    </tr>
+                    <tr>
+                        <td>Amount charged = {{data.percentage}}% of {{data.followers}} </td>
+                        <td class="_total">GBP {{data.amount}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-3 offset-lg-2">
+            <div class="payment_btn">
+                <button class="button_main" *ngIf="subscriptionAlterationStatus != '3'" [routerLink]="['/settings/previous-payments']"> View Past Billing </button>
+                <button class="button_main" *ngIf="subscriptionAlterationStatus != '3'" [disabled]="subscriptionAlterationStatus != '2'"
+                    [routerLink]="['/settings/cards']"> Pay now </button>
+                <button class="button_main" *ngIf="subscriptionAlterationStatus != '3'" (click)="confirmSubscriptionAlteration(subscriptionAlterationStatus)">
+                {{subscriptionAlterationStatus == '1'?'End':'Resume'}} Subscription </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="payment_outer">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="payment_plan">
+                <table cellspacing="0" cellpadding="0" border="0" class="plan">
+                    <tr>
+                        <th>Payment Plans</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let data of followerLimitList">
+                        <td>After {{data.limit}} followers</td>
+                        <td class="per_amount">{{data.commission}}</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="followers_select">
+                <div class="floating-label">
+                    <label>Limit Your Followers</label>
+                    <select name="queryType" [(ngModel)]="followersLimit" (change)="setNewFollowerLimit($event.target.value)" class="selectpicker floating-input month float-left">
+                        <option value="1">No Limit</option>
+                        <option *ngFor="let data of followerLimitList" [value]="data.id">{{data.limit}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Transaction Id </th>
+                <th> Transaction Payment </th>
+                <th> Number of Fans </th>
+                <th> Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactions">
+                <td> 2 </td>
+                <td> 1 </td>
+                <td> Fikri Ruslandi </td>
+                <td> 20/02/2018 </td>
+            </tr>
+            <tr *ngIf="transactions.length ==0">
+                <td colspan="4" style="text-align: center">
+                    No transaction to show
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div> -->
+
+<app-modal [openButtonId]="'modalComponentPaymentOpen'" [closeButtonId]="'modalComponentPaymentClose'" #modalComponentPayment
+    (confirmation)="alterSubscriptionStatus()"></app-modal>

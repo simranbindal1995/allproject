@@ -1,0 +1,33 @@
+<div class="follow_right float-right">
+  <h4>Followers {{totalCount}}</h4>
+  <div class="follow_inner">
+    <div class="follow_user" *ngFor="let data of followers">
+      <div class="media" [routerLink]="['/follower/profile',data._id]" routerLinkActive="active">
+        <div class="follow_profile">
+          <img src="{{data.profile_pic?(data.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}"> </div>
+        <div class="media-body align-self-center">
+          <h3> {{data.userName}} </h3>
+          <p> Points to be redeemed {{data.rewards_points}} </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="post" *ngIf="totalCount > 10" >
+    <div class="post_outer load_more">
+      <div class="post-top text-center">
+        <a class="button_main" style="cursor: pointer;" (click)="getProfileDetails()">
+          Load more
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="post_no no_post">
+    <p *ngIf="totalCount == 0"> No followers.</p>
+  </div>
+
+  <!-- <div class="follow_footer">
+    <a href=""> See All </a>
+  </div> -->
+</div>

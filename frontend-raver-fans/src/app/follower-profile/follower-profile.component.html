@@ -1,0 +1,80 @@
+<div class="follower_main home_main">
+  <div class="container">
+    <div class="follower_outer">
+      <div class="banner">
+        <div class="change_cover">
+          <div class="message">
+            <a style="cursor: pointer;" (click)="initiateChatWithFan()">
+              <p>
+                <span class="icon-chat"> </span> Message
+              </p>
+            </a>
+          </div>
+        </div>
+        <div class="profile_name">
+          <div class="prfile_img">
+            <img src="{{followerData.profile_pic?(followerData.profile_pic|toMediaUrl): 'assets/images/default-profile.png'}}">
+            <span class="btn-file">
+              <!-- <span class="icon-camera"> </span> -->
+              <input type="file">
+            </span>
+          </div>
+        </div>
+        <h1> {{followerData.userName | captaliseText}} </h1>
+      </div>
+      <div class="follow_tab">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" *ngIf="fansProfile == false" [ngClass]="{'active': selected == 'follower/profile'}" [routerLink]="['/follower/profile',user_id]" role="tab" aria-controls="profile">
+              Raveline
+            </a>
+            <a class="nav-link" data-toggle="tab" *ngIf="fansProfile == true" [ngClass]="{'active': selected == 'fans/profile','active': selected == 'follower/profile'}" [routerLink]="['/fans/profile',user_id]" role="tab" aria-controls="profile">
+              Raveline
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="fansProfile == false" [ngClass]="{'active': selected == 'follower/about'}" data-toggle="tab" [routerLink]="['/follower/about',user_id]" role="tab" aria-controls="profile">
+              About
+            </a>
+            <a class="nav-link" *ngIf="fansProfile == true" [ngClass]="{'active': selected == 'fans/about'}" data-toggle="tab" [routerLink]="['/fans/about',user_id]" role="tab" aria-controls="profile">
+              About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="fansProfile == false" data-toggle="tab" [ngClass]="{'active': selected == 'follower/network'}" [routerLink]="['/follower/network',user_id]" role="tab" aria-controls="profile">
+              Network
+            </a>
+            <a class="nav-link" *ngIf="fansProfile == true" data-toggle="tab" [ngClass]="{'active': selected == 'fans/network'}" [routerLink]="['/fans/network',user_id]" role="tab" aria-controls="profile">
+              Network
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" *ngIf="fansProfile == false" [ngClass]="{'active': selected == 'follower/photos'}" [routerLink]="['/follower/photos',user_id]" role="tab" aria-controls="profile">
+              Photos
+            </a>
+            <a class="nav-link" *ngIf="fansProfile == true" data-toggle="tab" [ngClass]="{'active': selected == 'fans/photos'}" [routerLink]="['/fans/photos',user_id]" role="tab" aria-controls="profile">
+              Photos
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="Profile" role="tabpanel">
+            <div class="follow_tab">
+              <div class="follow_left float-left">
+                <div class="brand_title">
+                  <h4> Brand Following </h4>
+                </div>
+                <div class="brand">
+                  <a *ngFor="let data of followerData.brands">
+                    <img src="{{data.profile_pic?(data.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">{{data.userName | captaliseText}}
+                  </a>
+                </div>
+              </div>
+              <router-outlet (activate)="onActivate($event)"> </router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

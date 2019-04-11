@@ -1,0 +1,203 @@
+<div class="home_main message" [hidden]="selectedChat">
+  <div class="container">
+    <div class="post_no">
+      No chat to show
+    </div>
+  </div>
+</div>
+
+<div class="home_main message" [hidden]="!selectedChat">
+  <div class="container">
+    <div class="message_outer">
+        <div class="toggle_menu" [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed" aria-controls="collapseBasic">
+           <p> Users </p> <span class="icon-menu"> </span>
+        </div>
+      <div class="user_list float-left side_menu" id="collapseBasic" (click)="isCollapsed = true" [collapse]="isCollapsed">
+        <div class="top_heading">
+          <h2>Messages</h2>
+        </div>
+        <div class="search_user">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchKeyword" (keyup)="getInbox(false)">
+            <span class="input-group-btn">
+              <button class="btn" type="button">
+                <span class="icon-search"> </span>
+              </button>
+            </span>
+          </div>
+        </div>
+        <!-- <h3>Messages</h3> -->
+        <div style="cursor: pointer;" class="list" [ngClass]="{'active': selectedChat == chat._id ,'online':chat.isOnline,'offline' :!chat.isOnline}"
+          *ngFor="let chat of chats" [routerLink]="['/messaging']" [queryParams]="{ user_id: chat._id }">
+
+          <a>
+            <div class="profile_img">
+              <img src="{{chat.profile_pic?(chat.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+
+            </div>
+            <div class="user_text">
+              <h3> {{chat.userName | capitalizefirst}}
+              </h3>
+              <!-- (chat.myMsg?'You sent an image':'Sent you an image') -->
+              <p>{{chat.isAttachment ?'Image':(chat.message.length >20 ? (chat.message| slice:0:20) +' ...' :chat.message )
+                }}
+              </p>
+            </div>
+            <div class="date">
+              <span>{{chat.created_at?(chat.created_at*1000 | timeAgo):'now'}}</span>
+            </div>
+            <div *ngIf="chat.unreadCount" class="message_count" style="position: absolute;top: 47px;right: 9px;">
+              <span>{{chat.unreadCount?(chat.unreadCount):''}}</span>
+            </div>
+          </a>
+        </div>
+
+        <div *ngIf="chats.length == 0 && !searchKeyword">
+          <div class="post_no">
+            No chat to show
+          </div>
+        </div>
+        <div *ngIf="chats.length == 0 && searchKeyword">
+          No chat matching this keyword
+        </div>
+
+      </div>
+
+      <div class="user_chat float-right">
+        <div class="top_heading">
+          <h2>
+
+            <div style="display: inline-block;width: 49px;height: 49px;border-radius: 50%;">
+              <img style="width: 100%;border-radius: 50%;height: inherit;" src="{{selectedChatProfilePic?(selectedChatProfilePic|toMediaUrl):'assets/images/default-profile.png'}}">
+            </div>
+            {{selectedChatUserName|capitalizefirst}}
+            <span *ngIf="!selectedChatUserOnline && selectedChatLastSeen"> Active {{selectedChatLastSeen*1000|timeAgo}} </span>
+          </h2>
+          <a [hidden]="!selectedChatRoomId" class="_deleteMsg" (click)="confirmChatDeletion(selectedChatRoomId,true)">
+            <span class="icon-delete"></span>
+          </a>
+
+        </div>
+        <div class="chat_outer" id="chatScroller" (scroll)="onScroll($event)">
+          <button class="button_main load" [hidden]="conversation.length >=totalMessages || !hideLoadPrevious" (click)="getConversation(selectedChat,false)">
+            Load previous <span class="fa fa-spinner fa-spin"></span>
+          </button>
+          <div *ngFor="let message of conversation;let $index = index" [ngClass]="{'user_right float-right':message.myMsg,'user_left float-left':!message.myMsg}">
+            <div class="media">
+              <div class="chat_user" *ngIf="!message.myMsg" [hidden]="!(conversation[$index-1]?(conversation[$index-1].sender_id.profile_pic !=message.sender_id.profile_pic):true)"
+                style="background: gray">
+                <img src="{{message.sender_id.profile_pic?(message.sender_id.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+
+
+              </div>
+              <div class="media-body">
+
+                <!-- <div class="day_show" *ngIf="message.created_at > currentDate">
+                  <p>Today </p>
+                </div>
+                <div class="day_show" *ngIf="message.created_at < currentDate && message.created_at > yesterdayDate ">
+                  <p>Yesterday</p>
+                </div>
+                <div class="day_show" *ngIf="message.created_at < currentDate && message.created_at < yesterdayDate">
+                  <p>{{message.created_at *1000| date:'dd/MM/yyyy '}}</p>
+                </div> -->
+
+                <div class="chat_message" *ngIf="!message.isAttachment">
+                  <a class="_deleteMsg" *ngIf="message.myMsg" (click)="confirmChatDeletion(message._id,false)">
+                    <span class="icon-delete"></span>
+                  </a>
+                  <p>{{message.message}}</p>
+                  <a class="_deleteMsg" *ngIf="!message.myMsg" (click)="confirmChatDeletion(message._id,false)">
+                    <span class="icon-delete"></span>
+                  </a>
+                  <div class="time">
+                    <span class="icon-single" *ngIf="message.myMsg&& !message.isDelivered&& message.is_read != 2"></span>
+                    <span class="icon-double" *ngIf="message.myMsg && message.isDelivered && message.is_read != 2"></span>
+                    <span class="icon-double" style="color: #58CCE1" *ngIf="message.myMsg  && message.is_read == 2"></span>
+
+                    <span>
+                      {{message.created_at>currentDate? 'Today '+(message.created_at*1000|date: "hh:mm a"):(message.created_at*1000|date: "dd/MM/yyyy
+                      hh:mm a")}}
+                    </span>
+                  </div>
+
+                </div>
+                <div class="chat_message" *ngIf="message.isAttachment" (click)="enlargeAttachmentMedia=message.message;enlargeAttachment.show()">
+                  <img style="height: 100px;width: 100px" src="{{message.message|toMediaUrl}}">
+                  <div class="time" *ngIf="message.myMsg">
+                    <span class="icon-single" *ngIf="message.myMsg&& !message.isDelivered&& message.is_read != 2"></span>
+                    <span class="icon-double" *ngIf="message.myMsg && message.isDelivered && message.is_read != 2"></span>
+                    <span class="icon-double" style="color: #58CCE1" *ngIf="message.myMsg  && message.is_read == 2"></span>
+                    <!-- && message.isDelivered -->
+                    <span>
+                      {{message.created_at>currentDate? 'Today '+(message.created_at*1000|date: "hh:mm a"):(message.created_at*1000|date: "dd/MM/yyyy
+                      hh:mm a")}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_user" *ngIf="message.myMsg" [ngClass]="{'hiddenUserPic':!(conversation[$index-1]?(conversation[$index-1].sender_id.profile_pic !=message.sender_id.profile_pic):true)}"
+                style="background: gray">
+                <img src="{{message.sender_id.profile_pic?(message.sender_id.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="typing_text" *ngIf="isSelectedUserTyping">
+          <p class="saving">typing
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </p>
+
+        </div>
+        <div class="type_message" [hidden]="!canChatWithUser">
+          <div class="chat_input float-left">
+            <textarea type="text" [(ngModel)]="message" placeholder="Type a message ...." (keyup.enter)=" sendMessage() " (keyup)="typing()"></textarea>
+          </div>
+          <div class="chat_icon float-right">
+            <div class="file">
+              <input type="file" #myInput2 id="fileInputId2" accept="image/*" (change)="sendAttachmentListener($event)">
+              <span class="icon-attach" style="cursor: pointer"> </span>
+            </div>
+            <span class="icon-send-button" style="cursor: pointer;" (click)="sendMessage(message)"> </span>
+          </div>
+        </div>
+
+
+        <div [hidden]="canChatWithUser" class="block_text">
+          <p>You can't {{conversation.length ?'further ':''}}chat with this user as this user doesn't follows you{{conversation.length
+            ?' anymore ':''}}.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade verification_mail post_modal" [config]="{backdrop: 'static'}" bsModal #enlargeAttachment="bs-modal"
+    id="enlargeAttachment" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-Messaging">
+          <div class="make_post">
+            <button type="button" id="enlargeAttachmentCloseButton" class="close pull-right" (click)="enlargeAttachment.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="post_inner">
+            <div class="message_img">
+              <img src="{{enlargeAttachmentMedia|toMediaUrl}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <app-modal [openButtonId]="'modalComponentMessagingOpen'" [closeButtonId]="'modalComponentMessagingClose'" #modalComponentMessaging
+    (confirmation)="deleteChat($event)"></app-modal>

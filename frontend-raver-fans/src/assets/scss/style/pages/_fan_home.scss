@@ -1,0 +1,419 @@
+#banner {
+    &.fan {
+        height: auto;
+        @include padding(55 0 0 0);
+        @include media('<=767px') {
+            @include margin(18 0 0 0);
+        }
+        .banner_text {
+            p {
+                line-height: 27px;
+                font-size: 40px;
+                font-weight: 400;
+                @include media('<=1024px') {
+                    font-size: 34px;
+                }
+                @include media('<=767px') {
+                    line-height: 16px;
+                    font-size: 24px;
+                }
+            }
+            .banner_btn {
+                a {
+                    @include margin(0 30 0 0);
+                    @include media('<=767px') {
+                        @include margin(0 0 20 0);
+                        display: $ib;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.contact_us {
+    &.fan {
+        @include padding(0);
+    }
+}
+
+.fans_brands {
+    &._fans {
+        @include media('<=767px') {
+            text-align: center;
+        }
+        .fans_text {
+            @include media('<=767px') {
+                @include margin(22 0 18 0);
+            }
+            h2 {
+                text-transform: none;
+                font-family: 'JosefinSans-SemiBold';
+                font-size: 34px;
+                @include media('<=767px') {
+                    font-size: 18px !important;
+                }
+            }
+            p {
+                font-size: 17px;
+                font-family: 'JosefinSans-SemiBold';
+                @include media('<=767px') {
+                    font-size: 14px !important;
+                }
+                span {
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}
+
+#banner {
+    &.fan_banner {
+        background: url('#{$url}/fan.png') no-repeat $white;
+        background-size: cover;
+        display: $ib;
+        position: relative;
+        @include padding(85 0 110);
+        @include media('<=767px') {
+            @include padding(55 0 96 0);
+            background: url('#{$url}/fan_bg.png') no-repeat $white;
+        }
+        .banner_text {
+            position: relative;
+            z-index: 99;
+            width: 100%;
+            display: $ib;
+            .fan_img {
+                text-align: center;
+                @include media('<=1366px') {
+                    img {
+                        max-width: 260px;
+                        margin-top: 63px;
+                    }
+                }
+            }
+            .img-fluid {
+                @include media('<=767px') {
+                    max-height: 327px;
+                }
+            }
+            .fans_text {
+                margin-top: 76px;
+                @include media('<=767px') {
+                    margin-top: -14px;
+                }
+                .button_main {
+                    &.theme {
+                        background: none;
+                        color: $darkblue;
+                        border: 2px solid $darkblue;
+                        &:hover {
+                            color: $white;
+                        }
+                    }
+                    &.yellow {
+                        border: 2px solid $yellow;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.favourite_Brand {
+    background: #fdfdfd;
+    @include padding(113 0 100 0);
+    @include media('<=1024px') {
+        @include padding(53 0 100 0);
+    }
+    @include media('<=767px') {
+        @include padding(41 0 1 0);
+    }
+    h2 {
+        @include font-size(26);
+        color: $yellow;
+        text-transform: uppercase;
+        font-family: 'JosefinSans-SemiBold';
+        @include media('<=767px') {
+            @include font-size(18);
+        }
+    }
+    p {
+        color: #5E5E5E;
+        @include font-size(15);
+        font-family: 'JosefinSans-SemiBold';
+        max-width: 53%;
+        margin: 0 auto;
+        @include media('<=767px') {
+            max-width: 100%;
+        }
+    }
+}
+
+.fan_outer {
+    margin-top: 90px;
+    margin-bottom: 90px;
+    @include media('<=992px') {
+        margin-bottom: 0;
+    }
+    @include media('<=767px') {
+        margin-top: 30px;
+        margin-bottom: 9px;
+    }
+}
+
+.fav_box {
+    @include media('<=992px') {
+        margin: 0 0 39px 0;
+    }
+    &:hover {
+        .media-left {
+            background: $yellow;
+            span {
+                color: $white;
+            }
+        }
+    }
+    .media {
+        @include media('<=767px') {
+            display: inline-table;
+            text-align: center;
+            @include margin(0 0 28 0);
+            width: 100%;
+        }
+    }
+    .media-left {
+        @include square(83px);
+        background: #fff;
+        border-left: 1px solid $yellow;
+        border-top: 1px solid $yellow;
+        line-height: 76px;
+        text-align: center;
+        @include transition(0.8s);
+        box-shadow: 0 1px 7px #ccc;
+        @include media('<=767px') {
+            margin: 0 auto;
+        }
+        span {
+            color: #bab9b9;
+            font-size: 40px;
+            vertical-align: middle;
+            &.icon-getReward {
+                font-size: 54px;
+            }
+        }
+    }
+    .media-body {
+        @include margin(0 0 0 18);
+        @include media('<=767px') {
+            @include margin(17 0 0 0);
+            width: 100%;
+        }
+        h3 {
+            @include font-size(18);
+            font-family: 'JosefinSans-SemiBold';
+            text-transform: uppercase;
+            @include media('<=767px') {
+                @include font-size(16);
+            }
+        }
+        p {
+            @include font-size(13);
+            font-family: 'JosefinSans-SemiBold';
+            color: #515151;
+            max-width: 100%;
+        }
+    }
+}
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px; // background-image: url('#{$url}/banner.jpg') no-repeat;
+}
+
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+
+.bgBottom {
+    z-index: 5;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.waveTop {
+    background-size: 50% 179px;
+}
+
+.waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.waveMiddle {
+    background-size: 50% 227px;
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+
+.waveBottom {
+    background-size: 50% 179px;
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+
+.query {
+    background: #fff;
+    @include padding(0 0 10 0);
+    box-shadow: 0 0 278px #ededed;
+    @include media('<=767px') {
+        @include padding(33 0 0 0);
+    }
+    @include media('<=767px') {
+        text-align: center;
+        @include padding(29 0 29 0);
+        @include margin(0 0 -19 0);
+    }
+    .slider_text {
+        text-align: center;
+        @include media('<=767px') {
+            @include margin(30 0 0 0);
+        }
+        h4 {
+            @include font-size(28);
+            color: $yellow;
+            font-family: 'JosefinSans-SemiBold';
+            text-transform: uppercase;
+            @include media('<=1024px') {
+                @include font-size(22);
+            }
+            @include media('<=767px') {
+                @include font-size(18);
+            }
+        }
+        p {
+            @include font-size(16);
+            color: #707070;
+            font-family: 'JosefinSans-SemiBold';
+            max-width: 66%;
+            margin: 29px auto 0;
+            @include media('<=1024px') {
+                margin: 0 auto 0;
+                @include font-size(13);
+            }
+            @include media('<=767px') {
+                margin: 14px auto 0;
+                max-width: 100%;
+            }
+        }
+    }
+    .slider_img {
+        position: relative;
+        @include media('<=767px') {
+            margin: 27px auto 0;
+        }
+    }
+}
+
+.query {
+    .slider-1 {
+        .slick-next {
+            display: none;
+        }
+        .slick-prev {
+            display: none;
+        }
+        .slick-dots {
+            bottom: -49px;
+            @include media('<=767px') {
+                bottom: -28px;
+            }
+            li {
+                &.slick-active {
+                    button {
+                        &::before {
+                            font-size: 19px;
+                            color: $yellow;
+                            opacity: 1;
+                        }
+                    }
+                }
+                button {
+                    &::before {
+                        font-size: 19px;
+                        color: #b4b4b5;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.carousel {
+    &.slider-2 {
+        margin-top: -90px;
+        @include media('<=767px') {
+            margin-top: -50px;
+        }
+        .slick-next {
+            display: none;
+        }
+        .slick-prev {
+            display: none;
+        }
+        .slick-slide {
+            img {
+                @include media('<=767px') {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

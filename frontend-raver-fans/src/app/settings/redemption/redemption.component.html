@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Fans name </th>
+        <th> Points redeemed </th>
+        <th> Date </th>
+        <th> Point left </th>
+        <th>Number of rewards redeemed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of redemptionData  | paginate: { itemsPerPage: 10, currentPage: p,totalItems:totalCount }">
+        <td>
+          <a [routerLink]="['/follower/profile',data._id]">{{data.fanname | captaliseText}}</a>
+        </td>
+        <td>{{data.redeem_points}}</td>
+        <td>{{data.created_at*1000| date:'dd/MM/yy'}} </td>
+        <td>{{data.rewards_points_left}} </td>
+        <td>{{data.total_redemtion}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="totalCount==0">
+    <div class="post_no no_post">
+      <I>No results found.</I>
+    </div>
+  </span>
+  <pagination-controls *ngIf="totalCount > (skip+limit)" (pageChange)="p = $event" (click)="pageChanged(p)"></pagination-controls>
+</div>

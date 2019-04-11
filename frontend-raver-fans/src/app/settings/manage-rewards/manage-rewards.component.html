@@ -1,0 +1,211 @@
+<div class="table-responsive rewards">
+  <div class="set_points">
+    <h1> Set Points for Rave type created by your Fans. </h1>
+    <form [formGroup]="rewardsForm" (ngSubmit)="!rewardsForm.invalid && saveRewards()">
+      <div class="py-4">
+        <div class="floating-label">
+          <!-- <input type="text" class="floating-input" formControlName="textRewards" placeholder="Text"> -->
+          <label>Text (1 to 5)</label>
+          <select class="selectpicker" class="floating-input" formControlName="textRewards">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <small class="text-danger"
+            *ngIf="rewardsForm.controls.textRewards.invalid &&  rewardsForm.controls.textRewards.dirty">Text
+            rewards should be greater than 0</small>
+        </div>
+        <div class="floating-label">
+          <label>Image (6 to 10)</label>
+          <select class="selectpicker" class="floating-input" formControlName="imageRewards" tabindex="-98">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <small class="text-danger"
+            *ngIf="rewardsForm.controls.imageRewards.invalid &&  rewardsForm.controls.imageRewards.dirty">Image
+            rewards should be greater than 6</small>
+        </div>
+        <div class="floating-label">
+          <label>Video (11 to 20)</label>
+          <select class="selectpicker" class="floating-input" formControlName="videoRewards" tabindex="-98">
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+          </select>
+          <small class="text-danger"
+            *ngIf="rewardsForm.controls.videoRewards.invalid &&  rewardsForm.controls.videoRewards.dirty">Video
+            rewards should be greater than 11</small>
+        </div>
+        <div class="mange_btn">
+          <button class="button_main" (click)="formSubmitted=true"> Save </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <fieldset disabled="disabled"></fieldset>
+  <div [hidden]="totalCount== 0">
+    <div class="set">
+      <h2> Set Rewards </h2>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th> Points </th>
+          <th> Text </th>
+          <th> Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let data of rewards | paginate: { itemsPerPage: records_per_page, currentPage: p,totalItems:totalCount }">
+          <td>{{data.points}}</td>
+          <td>{{data.text}}</td>
+          <td>
+            <span class="icon-edit2" (click)="editRewardModal.show();getFieldValues(data)"></span>
+            <span class="icon-delete" (click)="deleteRewardConfirm(data)"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls *ngIf="totalCount > rewards.length" (pageChange)="p = $event" (click)="pageChanged(p)">
+  </pagination-controls>
+  <span *ngIf="totalCount==0">
+    <div class="post_no no_post">
+      <I>No results found.</I>
+    </div>
+  </span>
+  <div class="mange_btn">
+    <button class="button_main" (click)="rewardsImage='';AddformSubmitted =false;setRewardModal.show()"> Add New
+    </button>
+  </div>
+</div>
+<button (click)="setRewardModal.hide()" hidden id="closeAddPopUp"></button>
+<button (click)="editRewardModal.hide()" hidden id="closeEditPopUp"></button>
+<!-- add modal popup -->
+<div class="modal verification_mail fade setRewardModal" bsModal #setRewardModal="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name" (onHide)="setRewardEmpty();">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title">Add new Rewards</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addRewardsForm" (ngSubmit)="addRewardsForm.valid && addRewards()">
+          <div>
+            <div class="form-group">
+              <!-- <label>Reward Point</label> -->
+              <input type="text" class="form-control" formControlName="saveRewards" name="saveRewards"
+                placeholder="Set the Points required by Fans to redeem for reward">
+              <!-- <small class="text-danger" *ngIf="addRewardsForm.controls.saveRewards.errors.required && (addRewardsForm.controls.saveRewards.dirty || AddformSubmitted) ">
+                                Required!</small> -->
+              <small class="text-danger"
+                *ngIf="addRewardsForm.controls.saveRewards.invalid && (addRewardsForm.controls.saveRewards.dirty || AddformSubmitted) ">
+                Rewards should be valid and must contain value greater than 0</small>
+            </div>
+            <div class="form-group">
+              <div class="row align-items-center" id="rewardsDiv">
+                <div class="col-lg-12 col-md" [hidden]="!rewardsImage">
+                  <div class="add_img text-center">
+                    <div class="upload_img align-items-center">
+                      <img class="icon-gallery" src="{{rewardsImage}}" alt="" width="250px" height="250px" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-auto text-center">
+                  <div class="button_main file_upload">
+                    <input type="file" #fileUpload id="fileUpload" (change)="handleFileInput($event.target.files)"/>
+                    <span style="color: #495057">
+                      <i class="icon-reward"></i> Upload</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" formControlName="saveText" name="saveText"
+                placeholder="Describe the reward in detail" maxlength="50">
+              <small id="emailHelp" class="text-danger" *ngIf="addRewardsForm.controls.saveText.value"
+                style="margin: 4px 0 0 0;">
+                {{ addRewardsForm.controls.saveText.value.trim()?(50 -
+                addRewardsForm.controls.saveText.value.trim().length >1 ? 50 -
+                addRewardsForm.controls.saveText.value.trim().length
+                +' characters left':50 - addRewardsForm.controls.saveText.value.trim().length+'
+                character
+                left'):''}}
+              </small>
+              <!-- {{addRewardsForm.controls.saveText.errors.required}}
+                            <small class="text-danger" *ngIf="addRewardsForm.controls.saveText.errors.required && (addRewardsForm.controls.saveText.dirty || AddformSubmitted) ">
+                                Required!</small> -->
+              <small class="text-danger"
+                *ngIf=" addRewardsForm.controls.saveText.invalid && (addRewardsForm.controls.saveText.dirty || AddformSubmitted) ">
+                Description should be valid</small>
+            </div>
+            <small class="text-danger">{{message}}</small>
+            <div class="form-group btn_save">
+              <input type="submit" class="button_main" value="Save" (click)="AddformSubmitted = true">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit modal popup -->
+<div class="modal verification_mail fade setRewardModal" bsModal #editRewardModal="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title">Edit Rewards</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="setRewardsData" (ngSubmit)="saveEditRewards()">
+          <div class="form-group">
+            <!-- <label>Reward Point</label> -->
+            <input type="text" class="form-control" formControlName="editRewardPoints" name="editRewardPoints"
+              placeholder="Set Reward">
+          </div>
+          <div class="form-group">
+            <div class="row align-items-center">
+              <div class="col-12 col-lg-12 col-md">
+                <div class="add_img text-center">
+                  <div class="upload_img align-items-center">
+                    <img src="{{rewardsImage}}" alt="" width="250px" height="250px" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-12 col-md-auto text-center">
+                <div class="button_main file_upload" style="position: relative; overflow: hidden;">
+                  <input type="file" id="fileUpload1" #fileUpload (change)="handleFileInput($event.target.files)" />
+                  <span style="color: #495057">
+                    <i class="icon-reward"></i> Upload</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- <label>Add Text</label> -->
+            <input type="text" class="form-control" formControlName="editTextRewards" name="editTextRewards"
+              placeholder="Add text">
+          </div>
+          <button class="button_main"> Save </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-modal (confirmed)="deleteReward($event)"></app-modal> -->
+<app-modal [openButtonId]="'modalComponentManageRewardsOpen'" [closeButtonId]="'modalComponentManageRewardsClose'"
+  #modalComponentManageRewards (confirmation)="deleteReward($event)"></app-modal>

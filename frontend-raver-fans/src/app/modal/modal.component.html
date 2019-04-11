@@ -1,0 +1,29 @@
+<div style="z-index:99999999999" class="modal fade verification_mail successModal" [config]="{backdrop: 'static'}" bsModal #modal="bs-modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>
+          {{modalSettings.message}}
+        </p>
+        <span class="icon-tick" *ngIf="modalSettings.modalType == 'success'"> </span>
+        <span class="icon-warning" *ngIf="modalSettings.modalType == 'confirmation'"> </span>
+        <span class="icon-warning" *ngIf="modalSettings.modalType == 'warning'"> </span>
+        <span class="icon-cross" *ngIf="modalSettings.modalType == 'error'"> </span>
+      </div>
+      <div class="modal-footer text-center" *ngIf="modalSettings.modalType == 'confirmation'">
+        <div class="status_btn"> <button class="popup" class="button_main" (click)="confirm()">
+            {{modalSettings.confirmButtonText?modalSettings.confirmButtonText:'Yes'}} </button>
+          <button class="popup" class="button_main" (click)="close()"> Cancel </button>
+        </div>
+      </div>
+      <div class="modal-footer text-center" *ngIf="modalSettings.hasOkayButton">
+        <div class="status_btn">
+          <button class="popup" class="button_main" (click)="okayClicked()">Ok </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button style="display: none;" class="popup" id="{{openButtonId}}" class="button_main" (click)="modal.show()"> </button>
+<button style="display: none;" class="popup" id="{{closeButtonId}}" class="button_main" (click)="modal.hide()">
+</button>

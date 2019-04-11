@@ -1,0 +1,36 @@
+/***border-mixn****/
+@mixin border-left($width,$style,$color) 
+{
+	border-left:$width+px $style $color;
+}
+
+@mixin border-right($width,$style,$color) 
+{
+	border-right:$width+px $style $color;
+}
+
+
+@mixin border-top($width,$style,$color) 
+{
+	border-top:$width+px $style $color;
+}
+
+@mixin border-bottom($width,$style,$color) 
+{
+	border-bottom:$width+px $style $color;
+}
+
+@mixin border($width,$type,$color) {
+  @if length($width) == 1 {
+      border: $width+px $type $color ;
+  }
+
+  @if length($width) == 2 {
+   border: nth($width, 1)+px nth($width, 2)+px $type $color ;
+  }
+
+  @if length($width) == 3 {
+      border: nth($width, 1)+px nth($width, 2)+px nth($width, 3)+px $type $color ;
+  }
+  
+}

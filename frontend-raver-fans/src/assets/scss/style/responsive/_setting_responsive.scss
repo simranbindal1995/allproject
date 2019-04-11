@@ -1,0 +1,45 @@
+@include media("<=991px") {
+    .home_main {
+        .table_outer {
+            .table-responsive {
+                &.rewards {
+                    width: 545px;
+                }
+            }
+        }
+
+        .password {
+            .account_detail {
+                .login_outer {
+                    .login_inner {
+                        .login_form {
+                            &.brand_name {
+                                .floating-label {
+                                    &.card_number {
+                                        width: 236px;
+                                    }
+
+                                    .month {
+                                        width: 194px;
+                                    }
+
+                                    .year {
+                                        width: 194px;
+                                    }
+                                }
+
+                                .info_form {
+                                    .expiration_date {
+                                        .expiration_month {
+                                            width: 420px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

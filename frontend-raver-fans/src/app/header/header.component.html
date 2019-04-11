@@ -1,0 +1,311 @@
+<div class="header main_home" *ngIf="isLoggedInUser">
+  <div class="container">
+    <div class="home_logo float-left">
+      <a class="navbar-brand" routerLink="dashboard/raveline">
+        <img src="assets/images/logo.png" alt=""> </a>
+    </div>
+    <div class="header_search">
+      <div class="dropdownSearch">
+        <input type="search" placeholder="Search" [formControl]="searchKeyword">
+        <button>
+          <span class="icon-search">
+          </span>
+        </button>
+        <div class="dropdown-contentSearch" [hidden]="!searchResults.length">
+          <a style="cursor: pointer;" *ngFor="let result of searchResults;" (click)="viewProfile(result)">
+            <div class="media">
+              <div class="media-left">
+                <div class="pro_img">
+                  <img src="{{result.profile_pic? (result.profile_pic|toMediaUrl):'assets/images/avatar.png'}}">
+                </div>
+                <p> {{result.userName|capitalizefirst}} </p>
+              </div>
+              <div class="media-body align-self-center">
+                <p> {{result.role == 1 ? 'Fan':(result.role == 2 ? 'Brand':'')}} </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="header-right float-right">
+      <div class="dropdown message_drop" dropdown>
+        <button type="button" class="btn btn-secondary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="dropdownMenuButtonMessage" aria-controls="dropdownMenuButton" (click)="showMessages()">
+          <span class="icon-comments">
+          </span>
+          <div class="notification_badge" *ngIf="totalUnreadMessages  &&  totalUnreadMessages > 0"> {{totalUnreadMessages}}</div>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonMessage" id="dropdownMenuButtonMessage" x-placement="bottom-start" *dropdownMenu style="position: absolute; transform: translate3d(0px, 16px, 0px); top: 0px; left: 0px; will-change: transform;">
+          <span> Messages </span>
+          <a class="dropdown-item" *ngFor="let chat of chats" [routerLink]="['messaging']" [queryParams]="{ user_id: chat._id }">
+            <div class="noti_profile float-left">
+              <img style="height: 50px;width: 50px" src="{{chat.profile_pic?(chat.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+              <div *ngIf="chat.unreadCount" class="message_count">
+                <span style="color:white;">{{chat.unreadCount?(chat.unreadCount):''}}</span>
+              </div>
+            </div>
+            <div class="noti-details float-right">
+              <h4> {{chat.userName | capitalizefirst}}
+              </h4>
+              <!-- (chat.myMsg?'You sent an image':'Sent you an image') -->
+              <p>{{chat.isAttachment ?'Image':(chat.message.length >20 ? (chat.message| slice:0:20) +' ...' :chat.message )
+                }}
+              </p>
+              <div class="day_time">
+                <span>{{chat.created_at?(chat.created_at*1000 | timeAgo):'now'}}</span>
+              </div>
+
+            </div>
+          </a>
+          <a class="dropdown-item see_all" style="cursor: pointer;" routerLink="messaging" *ngIf="chats.length">
+            See All
+          </a>
+          <a class="dropdown-item see_all" *ngIf="chats.length == 0">
+            No chats to show
+          </a>
+        </div>
+      </div>
+      <div class="dropdown message_drop notification" dropdown>
+        <button type="button" dropdownToggle class="btn btn-secondary dropdown-toggle" (click)="showNotifications()" id="dropdownMenuButtonNoti" aria-controls="dropdownMenuButton">
+          <span class="icon-notifications-button">
+          </span>
+          <div class="notification_badge" *ngIf="notificationCount  &&  notificationCount > 0"> {{notificationCount}}</div>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonNoti" id="dropdownMenuButtonNoti" *dropdownMenu x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 16px, 0px); top: 0px; left: 0px; will-change: transform;">
+          <span> Notifications </span>
+          <a class="dropdown-item active" *ngFor="let data of notificationData">
+            <div class="noti_profile float-left">
+              <img *ngIf="data.sender_id && (data.notification_type != 14 &&  data.notification_type != 16)" src="{{data.sender_id.profile_pic? (data.sender_id.profile_pic|toMediaUrl):'assets/images/avatar.png'}}"
+                width="50px" height="50px">
+
+              <img *ngIf="data.receiver_id && (data.notification_type == 14 ||  data.notification_type == 16)" src="{{data.receiver_id.profile_pic? (data.receiver_id.profile_pic|toMediaUrl):'assets/images/avatar.png'}}"
+                width="50px" height="50px">
+              <!-- <img src="assets/images/avatar.png" width="50px" height="50px"> -->
+            </div>
+            <div class="noti-details float-right">
+              <h4 *ngIf="data.sender_id && (data.notification_type != 14 &&  data.notification_type != 16)">{{data.sender_id.userName | capitalizefirst}} </h4>
+              <h4 *ngIf="data.receiver_id && (data.notification_type == 14 ||  data.notification_type == 16)">{{data.receiver_id.userName | capitalizefirst}} </h4>
+              <p> {{data.message|capitalizefirst}} </p>
+              <div class="day_time">
+                <span>{{data.created_at*1000 |timeAgo}}</span>
+              </div>
+            </div>
+          </a>
+          <a class="dropdown-item see_all" *ngIf="totalCount > 5" routerLink="/notification-list" routerLinkActive="active">
+            See All
+          </a>
+        </div>
+      </div>
+      <div class="profile_dropdown">
+        <div class="dropdown message_drop" dropdown>
+          <button type="button" dropdownToggle class="btn btn-secondary dropdown-toggle" id="button-basic" aria-controls="dropdown-basic">
+            <div class="header_profile">
+              <img src="{{profileData.profile_pic?(profileData.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+            </div>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="button-basic" id="dropdown-basic" *dropdownMenu x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 16px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" [routerLink]="['/brand']"> Profile </a>
+            <a class="dropdown-item" routerLink="/settings" routerLinkActive="active"> Settings </a>
+            <a class="dropdown-item" style="cursor: pointer;" (click)="confirmLogout()"> Logout </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isLoggedInUser">
+  <div class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" routerLink="landing">
+          <img src="assets/images/logo.png" alt=""> </a>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+          <span class="icon-res_menu"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapseBasic" [collapse]="isCollapsed">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" routerLinkActive="active" *ngIf="currentState!='/brand-home'">
+              <a class="nav-link " (click)="isCollapsed = true" routerLink="landing"> Home  </a>
+            </li>
+            <li class="nav-item " routerLinkActive="active" *ngIf="currentState!='/brand-home'">
+              <a class="nav-link" (click)="isCollapsed = true" routerLink="how-it-works">How it works</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="currentState!='/brand-home'">
+              <a class="nav-link" (click)="isCollapsed = true" routerLink="contact-us">Contact Us</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="currentState!='/brand-home'">
+              <a class="nav-link" (click)="isCollapsed = true" routerLink="/faq">Faq</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="currentState!='/brand-home'">
+              <a class="nav-link" (click)="isCollapsed = true" routerLink="/aboutUs">About Us</a>
+            </li>
+            <li class="nav-item login_">
+              <a class="nav-link" (click)="isCollapsed = true;signup.hide();loginSubmission=false;form.reset();login.show()"> Log in </a>
+            </li>
+            <li class="nav-item login_ sign_up-border">
+              <a class="nav-link" (click)="isCollapsed = true;login.hide();formSubmitted=false;form1.reset();signup.show()"> Sign Up </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- login -->
+  <button (click)="login.hide()" hidden id="hideLoginPopup"></button>
+  <div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #login="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="login.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login_form">
+            <h2> Log in </h2>
+            <p class="alert alert-danger" *ngIf="loginErrorMessage">{{loginErrorMessage}}</p>
+            <form data-ng-init="loginSubmission=false" novalidate (ngSubmit)="loginFormSubmit(form,$event)" #form="ngForm">
+              <div class="floating-label">
+                <input required class="floating-input" type="email" placeholder=" " [pattern]="emailLoginpattern" [(ngModel)]="loginformData.email" name="email" #email="ngModel">
+                <small class="text-danger" *ngIf="!loginformData.email && loginSubmission"> Email is required</small>
+                <small class="text-danger" *ngIf="form.controls.email && form.controls.email.value && form.controls.email.invalid && loginSubmission">Email is invalid</small>
+                <span class="highlight"></span>
+                <label>Email Address</label>
+              </div>
+              <div class="floating-label">
+                <input class="floating-input" required type="password" id="loginPassword" #loginPassword placeholder=" " [(ngModel)]="loginformData.password" name="loginPassword" #loginPassword="ngModel">
+                <span class="highlight"></span>
+                <label>Password</label>
+                <span [ngClass]="{'icon-eye': typeVisible == 2,'icon-view': typeVisible == 1}" (click)="toggleVisibilityLogin()"></span>
+                <small class="text-danger" *ngIf="!loginformData.password && loginSubmission"> Password is required</small>
+              </div>
+              <!-- <div class="check_box">
+                <label>
+                  <input class="radio-inline" name="radios" value="" type="checkbox">
+                  <span class="outside">
+                    <span class="inside"></span>
+                  </span> Remember me </label>
+              </div> -->
+              <div class="login_btn">
+                <input type="submit" class="button_main" (click)="loginSubmission= true" value="Log In">
+                <a class="forgot_password" (click)="login.hide();forgotFormSubmitted= false;forgotPassword.show()">
+                  Forgot Password </a>
+                <p> New Here?
+                  <a (click)="login.hide();formSubmitted=false;form1.reset();signup.show()"> Sign Up </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- signup -->
+  <button (click)="signup.hide()" hidden id="hideSignUp"></button>
+  <div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #signup="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="signup.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login_form">
+            <h2> Sign up </h2>
+            <form novalidate (ngSubmit)="signUpFormSubmit(form1,$event)" #form1="ngForm">
+              <p class="alert alert-success" *ngIf="singUpSucessMessage && formSubmitted">{{singUpSucessMessage}}</p>
+              <p class="alert alert-danger" *ngIf="singUpErrorMessage && formSubmitted">{{singUpErrorMessage}}</p>
+              <div class="floating-label">
+                <input required class="floating-input" type="text" placeholder=" " [(ngModel)]="singUpformData.brandName" name="brandName" #brandName="ngModel">
+                <small class="text-danger" [hidden]="formSubmitted==false" *ngIf="!singUpformData.brandName && (brandName.dirty || formSubmitted)">Brand name is required.</small>
+                <span class="text-danger" class="highlight"></span>
+                <label>Brand Name</label>
+              </div>
+              <div class="floating-label">
+                <input required class="floating-input" type="email" placeholder=" " [(ngModel)]="singUpformData.email" name="email" #email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$">
+                <small class="text-danger" [hidden]="email.valid || (email.untouched && formSubmitted==false)" *ngIf="email.errors?.required">Email is required</small>
+                <small class="text-danger" *ngIf="email.errors?.pattern && email.invalid">Please enter the valid email address.</small>
+                <span class="highlight"></span>
+                <label>Email Address</label>
+              </div>
+              <div class="floating-label">
+                <input required class="floating-input" #password="ngModel" id="password" type="password" placeholder=" " ng-pattern="^(?=.*)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$" #password [(ngModel)]="singUpformData.password" name="password">
+                <small class="text-danger" [hidden]="formSubmitted==false" *ngIf="!singUpformData.password && (password.dirty || formSubmitted)">Password is required.</small>
+                <small class="text-danger" *ngIf="password.errors?.pattern && password.invalid">Password must be 8-16 characters long and must contain alphanumerics and special characters( @ # $ % ^ &
+                  * ).'</small>
+                <span class="highlight"></span>
+                <label>Password</label>
+                <span [ngClass]="{'icon-eye': typeVisibleSignUp == 2,'icon-view': typeVisibleSignUp == 1}" (click)="toggleVisibility()"></span>
+              </div>
+              <div class="floating-label confirm">
+                <input required class="floating-input" type="password" placeholder=" " [(ngModel)]="singUpformData.confirmPassword" name="confirmPassword" #confirmPassword="ngModel" #confirmPassword>
+                <small class="text-danger" [hidden]="confirmPassword.valid || (confirmPassword.untouched && formSubmitted==false)" *ngIf="confirmPassword.errors?.required">
+                  Confirm Password is required</small>
+                <span class="highlight"></span>
+                <label>Confirm Password </label>
+                <span [ngClass]="{'icon-eye': typeVisible1 == 2,'icon-view': typeVisible1 == 1}" (click)="toggleConfirmVisibility()"></span>
+                <small class="text-danger" *ngIf="singUpformData.confirmPassword && singUpformData.confirmPassword != singUpformData.password">Your password and confirm password do not match.</small>
+              </div>
+              <p> Already have an account ?
+                <a (click)="signup.hide();form.reset();login.show()"> Log In </a>
+              </p>
+              <div class="check_box sign_up">
+                <label>
+                  <input type="checkbox" required checked="checked" class="radio-inline" name="termsNConditions" [(ngModel)]="singUpformData.termsNConditions" #termsNConditions="ngModel">
+                  <span class="outside">
+                    <span class="inside"></span>
+                  </span> I agree to the
+                  <a routerLink="/terms" (click)="showTerms()" routerLinkActive="active">Terms & Conditions</a>
+                </label>
+                <small class="text-danger" *ngIf="!singUpformData.termsNConditions && formSubmitted">
+                  Please agree to terms and condition.</small>
+              </div>
+              <div class="login_btn">
+                <input type="submit" (click)="formSubmitted= true" class="button_main" value="SIGN UP">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- forgot password -->
+  <button (click)="forgotPassword.hide()" hidden id="hideforgot"></button>
+  <div class="modal fade verification_mail" [config]="{backdrop: 'static'}" bsModal #forgotPassword="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forgotPassword.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login_form">
+            <h2> forgot Password </h2>
+            <p class="forogt_p">Enter registered email to reset your password.</p>
+            <p class="alert alert-success" *ngIf="forgotFormSubmitted==true && forgotSucessMessage">{{forgotSucessMessage}}</p>
+            <p class="alert alert-danger" *ngIf="forgotFormSubmitted==true && forgotErrorMessage">{{forgotErrorMessage}}</p>
+            <form [formGroup]="forgotForm" (ngSubmit)="forgotPasswordFunc()">
+              <div class="floating-label">
+                <input class="floating-input" required type="text" placeholder="" formControlName="email" name="email">
+                <span class="highlight"></span>
+                <label>Email Address</label>
+                <div class="login_btn">
+                  <input type="submit" (click)="forgotFormSubmitted=true" class="button_main" value="Send request">
+                </div>
+              </div>
+              <p class="new_user"> New Here?
+                <a (click)="login.hide();forgotPassword.hide();formSubmitted=false;form1.reset();signup.show()"> Sign Up </a>
+              </p>
+            </form>
+            <!-- <p class="new_user"> New Here?
+              <a (click)="forgotPassword.hide();signup.show()"> Sign Up </a>
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentHeaderOpen'" [closeButtonId]="'modalComponentHeaderClose'" #modalComponentHeader (confirmation)="logout()"></app-modal>

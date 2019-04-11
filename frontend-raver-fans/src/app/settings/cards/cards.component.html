@@ -1,0 +1,44 @@
+<div class="main_outer">
+  <div class="card_inner">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Choose From Saved Cards</h3>
+        <button class="button_main" [routerLink]="['/settings/add-card']">Add New Card</button>
+      </div>
+    </div>
+
+    <div class="card_main">
+      <div class="row" *ngFor="let card of addedCards" >
+        <div class="col-lg-12" (click)="selectedCard['card'] = card;">
+          <div class="card_outer">
+            <div class="media">
+              <label class="ch-radio">
+                <div class="media-left">
+                  <input type="radio" name="card" [attr.checked]="selectedCard['card'].id == card.id ? true : null">
+                  <span></span>
+                  <p>{{card.name}}</p>
+                </div>
+                <div class="media-body">
+                  <p>**** **** **** {{card.last4}}</p>
+                  <p>{{card.brand}}</p>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="dlt_icon">
+            <button (click)="confirmCardDeletion(card)">
+              <span class="icon-delete"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 pay_now">
+        <button class="button_main" (click)="payNow()">Pay Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentCardListOpen'" [closeButtonId]="'modalComponentCardListClose'" #modalComponentCardList
+  (confirmation)="deleteAddedCard($event)"></app-modal>

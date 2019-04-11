@@ -1,0 +1,180 @@
+@include media("<=991px") {
+    .follower_main {
+        &.home_main {
+            .follower_outer {
+                .banner {
+                    .profile_name {
+                        bottom: -44px;
+                        left: 16px;
+                        .prfile_img {
+                            width: 130px;
+                            height: 130px;
+                        }
+                    }
+                    h1 {
+                        font-size: 22px;
+                        left: 159px;
+                        bottom: 17px;
+                    }
+                }
+                .follow_tab {
+                    .nav-tabs {
+                        .nav-item {
+                            .nav-link {
+                                width: 159px;
+                                &.active {
+                                    &::after {
+                                        left: 50%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .tab-content {
+                        .follow_tab {
+                            .follow_left {
+                                width: 30%;
+                            }
+                            .post_left {
+                                width: 67%;
+                            }
+                            .follow_right {
+                                width: 67%;
+                                .follow_inner {
+                                    .follow_user {
+                                        width: 46%;
+                                        margin: 0 0 11px 11px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media("<=767px") {
+    .home_main {
+        margin: 0 0 31px 0;
+        .table_outer {
+            margin: 64px 0 0 0;
+            .table-responsive {
+                margin: 8px 0 0 0;
+                &.rewards {
+                    width: 100% !important;
+                    .set_points {
+                        padding: 25px 18px 25px;
+                        .selectpicker {
+                            width: 100%;
+                            font-size: 16px;
+                        }
+                        h1 {
+                            font-size: 16px;
+                        }
+                    }
+                    .set {
+                        h2 {
+                            margin: 30px 0 30px 0;
+                        }
+                    }
+                }
+            }
+        }
+        .analytics {
+            margin: 60px 0 0 0;
+            .shares {
+                margin: 17px 0 0 0;
+                p {
+                    margin: 0 12px 0 0;
+                    font-size: 12px;
+                }
+            }
+        }
+        .password {
+            .account_detail {
+                margin: 65px 0 0 0;
+                .login_outer {
+                    padding: 44px 4px 22px;
+                    .login_inner {
+                        .login_form {
+                            &.brand_name {
+                                .floating-label {
+                                    &.card_number {
+                                        width: 100%;
+                                    }
+                                }
+                                .info_form {
+                                    .expiration_date {
+                                        .expiration_month {
+                                            width: 100% !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .change_password {
+                width: 100%;
+                margin: 66px 0 0 0;
+                .password_inner {
+                    padding: 38px 16px;
+                    .button_main {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .follower_main {
+        &.home_main {
+            .follower_outer {
+                .banner {
+                    h1 {
+                        font-size: 18px;
+                        left: 115px;
+                        bottom: 11px;
+                    }
+                }
+                .follow_tab {
+                    .nav-tabs {
+                        text-align: inherit;
+                        margin: 54px 0 0 5px;
+                        .nav-item {
+                            .nav-link {
+                                font-size: 14px;
+                                width: auto;
+                                padding: 23px 9px;
+                                height: 28px;
+                                border: 1px solid #fff;
+                                &.active {
+                                    &::after {
+                                        left: 41%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .follow_tab {
+                    .tab-content {
+                        margin: 16px 0 0 0;
+                        .follow_tab {
+                            .follow_left {
+                                width: 100%;
+                                .floating-label {
+                                    .floating-input {
+                                        font-size: 18px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

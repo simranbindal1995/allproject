@@ -1,0 +1,189 @@
+<div>
+    <div class="{{classToAdd}}">
+        <div class="post" *ngFor="let post of timelinePosts;let index = index;">
+            <div class="post_outer">
+                <div class="post-top">
+                    <div class="top_left float-left">
+                        <a>
+                            <div class="side-profile">
+                                <img src="{{post.created_by.profile_pic?(post.created_by.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+
+                            </div>
+
+                            <div class="profile_name" [ngStyle]="{'cursor':post.image || post.video ? 'pointer' : 'default' }" (click)="post.image || post.video ?getRaveDetails(post._id,true):''">
+                                <p> {{post.main}}
+                                    <span> {{post.created_at*1000 | timeAgo}} </span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="img_title" [ngStyle]="{'cursor':post.image || post.video ? 'pointer' : 'default' }" (click)="post.image || post.video ?getRaveDetails(post._id,true):''">
+                    <!-- data-toggle="modal" data-target="#postModal" data-dismiss="modal" -->
+                    <a>
+                        <h2> {{post.description}} </h2>
+                        <div class="img_box" *ngIf="post.image">
+                            <img src="{{post.image._id|toMediaUrl}}">
+                        </div>
+                        <div class="img_box" *ngIf="post.video">
+                            <img src="{{'data:image/png;base64,'+post.video.thumbnail}}">
+                        </div>
+                    </a>
+                </div>
+                <div class="rating-review">
+                    <div class="float-right review">
+                        <p> {{post.totalViews>1?post.totalViews+' Views':post.totalViews+' View'}} </p>
+                    </div>
+                </div>
+                <div class="comment_like">
+
+                    <a  >
+                        <span class="icon-heart" [ngStyle]="{ 'color':(post.already_liked) ? '#ff2a00': '#717275' }"> </span> {{post.totalLikes>1?post.totalLikes+' Likes':post.totalLikes+' Like'}}
+                    </a>
+
+                    <a style="cursor: pointer;" *ngIf="!post.description" (click)="getRaveDetails(post._id,true)">
+                        <span class="icon-comment"> </span> {{post.postCommenttotalComments>1?post.totalComments+' Comments':post.totalComments+' Comment'}}
+                    </a>
+                    <a style="cursor: pointer;" *ngIf="post.description">
+                        <span class="icon-comment"> </span> {{post.totalComments>1?post.totalComments+' Comments':post.totalComments+' Comment'}}
+                    </a>
+
+                    
+                </div>
+                <!-- <div class="post-comment">
+                    <div class="comment_list">
+                        <input type="button" class="button_main" *ngIf="post.totalComments > 4" [hidden]="post.Comments.length == post.totalComments"
+                            (click)="commentList(post._id,index)" value="Load previous">
+                        <div class="media" *ngFor="let data of post.Comments">
+                            <div class="media-left">
+                                <img src="{{data.sender_id.profile_pic? (data.sender_id.profile_pic|toMediaUrl):'assets/images/avatar.png'}}">
+                            </div>
+                            <div class="media-body">
+                                <h4>{{data.sender_id.userName}}</h4>
+                                <h6>{{data.comment}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+            </div>
+
+        </div>
+
+        <div class="post" *ngIf="timelinePosts.length == 0">
+            <div class="post_outer">
+                <div class="post-top">
+
+                    <p class="post_no">
+                        <span class="icon-gallery"></span>
+                        No post to show </p>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="post" *ngIf="totalPosts> timelinePosts.length">
+            <div class="post_outer load_more">
+                <div class="post-top text-center">
+                    <a class="button_main" style="cursor: pointer;" (click)="getTimeline()">
+                        Load more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" [hidden]="true" id="viewPostModalOpenButton" (click)="viewPostModal.show()"></button>
+<div class="modal fade verification_mail post_modal" [config]="{backdrop: 'static'}" bsModal #viewPostModal="bs-modal" id="viewPostModal"
+    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="post_inner">
+                    <div class="post_left float-left" *ngIf="selectedPost.image">
+                        <img src="{{selectedPost.image._id|toMediaUrl}}">
+                    </div>
+                    <div class="post_left float-left" *ngIf="selectedPost.video">
+                        <video controls width="624" height="260">
+                            <source src="{{selectedPost.video._id|toMediaUrl}}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="post_right float-right">
+                        <div class="post-top">
+                            <div class="top_left float-left">
+                                <a>
+                                    <div class="side-profile">
+                                        <img src="{{selectedPost?(selectedPost.created_by?(selectedPost.created_by.profile_pic|toMediaUrl):'assets/images/default-profile.png'):'assets/images/default-profile.png'}}">
+                                    </div>
+                                    <div class="profile_name">
+                                        <p>
+                                            <span> {{selectedPost.created_by?(selectedPost.created_by.userName|capitalizefirst):''}}
+                                            </span>
+                                        </p>
+                                        <h5> {{selectedPost.created_at*1000|timeAgo}} </h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <button type="button" id="viewPostModalCloseButton" class="close pull-right" (click)="viewPostModal.hide()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="comment_show" style="padding: 0 14px 93px!important">
+                            <h2>{{selectedPost.description}} </h2>
+                            <div class="rating-review">
+                                <!-- <div class="float-left rating">
+                                        <span class="icon-star selected"> </span>
+                                        <span class="icon-star selected"> </span>
+                                        <span class="icon-star selected"> </span>
+                                        <span class="icon-star"> </span>
+                                        <span class="icon-star"> </span>
+                                    </div> -->
+                                <div class="float-right review">
+                                    <p> {{selectedPost.totalViews>1?selectedPost.totalViews+' Views':selectedPost.totalViews+'
+                                        View'}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="comment_like">
+                                <a style="cursor: pointer;">
+                                    <span class="icon-heart" [ngStyle]="{ 'color':(selectedPost.already_liked) ? '#ff2a00': '#717275' }"> </span>
+                                    {{selectedPost.totalLikes>1?selectedPost.totalLikes+' Likes':selectedPost.totalLikes+' Like'}}
+                                </a>
+                                <a>
+                                    <span class="icon-comment"> </span> {{selectedPost.totalComments>1?selectedPost.totalComments+' Comments':selectedPost.totalComments+'
+                                    Comment'}}
+                                </a>
+
+
+                            </div>
+                            <div class="comment_like text-center">
+                                <a style="cursor: pointer;" *ngIf="selectedPost.totalComments> ravePopupComments.length" (click)="getRaveDetails(selectedPost._id)">
+                                    Load previous
+                                </a>
+                            </div>
+                            <div class="comment_content" *ngFor="let comment of ravePopupComments;">
+                                <div class="side-profile">
+                                    <img src="{{comment.sender_id?(comment.sender_id.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}">
+                                </div>
+                                <div class="comment_text">
+                                    <p> {{comment.comment|capitalizefirst}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

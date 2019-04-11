@@ -1,0 +1,744 @@
+<div class="follower_main home_main">
+    <div class="container">
+        <div class="follower_outer">
+            <div class="banner">
+                <div class="change_cover">
+                    <!-- <span class="btn-file">
+                        <span class="icon-camera"> </span>
+                        <input type="file">
+                    </span> -->
+                </div>
+                <div class="profile_name">
+                    <div class="prfile_img">
+                        <img src="assets/images/addidas_follow.jpg">
+                        <!-- <span class="btn-file">
+                            <span class="icon-camera"> </span>
+                            <input type="file">
+                        </span> -->
+                    </div>
+                </div>
+                <h1> Adidas </h1>
+            </div>
+            <div class="follow_tab">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#Profile" role="tab" aria-controls="home">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="role == 2" data-toggle="tab" ui-sref="" role="tab" aria-controls="profile">Rating</a>
+                        <a class="nav-link" *ngIf="role == 1" data-toggle="tab" [ngClass]="{'active': selected == 'follower/about'}" data-toggle="tab" [routerLink]="['/follower/about',user_id]" role="tab" aria-controls="profile">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="role == 2" data-toggle="tab" role="tab" aria-controls="profile">Followers 10</a>
+                        <a class="nav-link" *ngIf="role == 1" data-toggle="tab" role="tab" aria-controls="profile">Network 10</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Photos" role="tab" aria-controls="profile">Photos</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- profile tab -->
+                    <div class="tab-pane active" id="Profile" role="tabpanel">
+                        <div class="follow_tab">
+                            <div class="follow_left float-left">
+                                <div class="brand_title">
+                                    <h4>Brand Detail
+                                        <!-- <span class="icon-edit2"> </span> -->
+                                    </h4>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+                                        eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit
+                                        tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie
+                                        elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium
+                                        sit amet quis magna. Aenean velit odio, elementum in. </p>
+                                </div>
+                                <form>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand URL</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Phone number</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Category</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address 2</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="follow_map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54891.42554439708!2d76.66236106308125!3d30.698319302068263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fee906da6f81f%3A0x512998f16ce508d8!2sSahibzada+Ajit+Singh+Nagar%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1517556102589"
+                                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- post div -->
+                            <div class="post_left float-right">
+
+                                <!-- add post popup -->
+                                <!-- <div class="add_post">
+                                  <div class="make_post">
+                                      <p>
+                                          <img src="assets/images/post_add.png"> Make post </p>
+                                  </div>
+                                  <div class="add_post_text">
+                                      <div class="side-profile">
+                                          <img src="assets/images/addidas_profile.jpg"> </div>
+                                      <div class="post_textarea">
+                                          <textarea name="" placeholder="Write something Here..." class="form-control" rows="5"></textarea>
+                                      </div>
+                                      <div class="post_option">
+                                          <a href="#">
+                                              <span class="icon-tag"> </span> Tag Fans </a>
+                                          <a href="#">
+                                              <span class="icon-photos"> </span> Photos/Videos </a>
+                                          <a href="#">
+                                              <span class="icon-feeling"> </span> Feeling </a>
+                                      </div>
+                                  </div>
+                              </div> -->
+
+                                <div class="post">
+                                    <div class="post_outer">
+                                        <div class="post-top">
+                                            <div class="top_left float-left">
+                                                <a href="">
+                                                    <div class="side-profile">
+                                                        <img src="assets/images/addidas_profile.jpg"> </div>
+                                                    <div class="profile_name">
+                                                        <p> Adidas
+                                                            <span> 16 mins ago </span>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <!-- <div class="top_right float-right">
+                                                <div class="dropdown message_drop">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="true">
+                                                        <div class="header_profile">
+                                                            <span class="icon-show">
+
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                     share drop down
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 16px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="icon-edit2"></i>
+                                                            Edit
+                                                            <span> Edit this post </span>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                            <i class="icon-delete"></i>
+                                                            Delete
+                                                            <span> Delete this post </span>
+                                                        </a>
+                                                    </div> 
+
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="img_title">
+                                            <h2> New Brand </h2>
+                                            <div class="img_box">
+                                            </div>
+                                        </div>
+                                        <div class="rating-review">
+                                            <div class="float-left rating">
+                                                <span class="icon-star selected"> </span>
+                                                <span class="icon-star selected"> </span>
+                                                <span class="icon-star selected"> </span>
+                                                <span class="icon-star"> </span>
+                                                <span class="icon-star"> </span>
+                                            </div>
+                                            <div class="float-right review">
+                                                <p> 680k Views </p>
+                                            </div>
+                                        </div>
+                                        <div class="comment_like">
+                                            <a href="">
+                                                <span class="icon-heart"> </span> 65 Like </a>
+                                            <a href="">
+                                                <span class="icon-comment"> </span> 02 Comment </a>
+                                            <a href="">
+                                                <span class="icon-share"> </span> Share </a>
+                                        </div>
+                                    </div>
+                                    <div class="comment_box">
+                                        <div class="side-profile float-left">
+                                            <img src="assets/images/addidas_profile.jpg"> </div>
+                                        <div class="comment_input float-right">
+                                            <input type="text" placeholder="Comment and use @ to tag your fans"> </div>
+                                    </div>
+                                </div>
+                                <div class="post">
+                                    <div class="post_outer">
+                                        <div class="post-top">
+                                            <p class="post_no">
+                                                <span class="icon-gallery"></span>
+                                                No post to show </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end post div -->
+                        </div>
+                    </div>
+
+                    <!-- rating tab -->
+                    <!-- <div class="tab-pane" id="Rating" role="tabpanel">
+                        <div class="follow_tab">
+                            <div class="follow_left float-left">
+                                <div class="brand_title">
+                                    <h4>Brand Detail
+                                        <span class="icon-edit2"> </span>
+                                    </h4>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+                                        eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit
+                                        tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie
+                                        elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium
+                                        sit amet quis magna. Aenean velit odio, elementum in. </p>
+                                </div>
+                                <form>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand URL</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Phone number</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Category</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address 2</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="follow_map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54891.42554439708!2d76.66236106308125!3d30.698319302068263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fee906da6f81f%3A0x512998f16ce508d8!2sSahibzada+Ajit+Singh+Nagar%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1517556102589"
+                                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="follow_right float-right">
+                                <h4>Rating by Fans</h4>
+                                <div class="follow_inner">
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p class="rating">
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star selected"> </span>
+                                                    <span class="icon-star"> </span>
+                                                    <span class="icon-star"> </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="follow_footer">
+                                    <a href=""> See All </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- followers tab-->
+                    <!-- <div class="tab-pane" id="Followers" role="tabpanel">
+                        <div class="follow_tab">
+                            <div class="follow_left float-left">
+                                <div class="brand_title">
+                                    <h4>Brand Detail
+                                        <span class="icon-edit2"> </span>
+                                    </h4>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+                                        eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit
+                                        tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie
+                                        elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium
+                                        sit amet quis magna. Aenean velit odio, elementum in. </p>
+                                </div>
+                                <form>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand URL</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Phone number</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Category</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address 2</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="follow_map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54891.42554439708!2d76.66236106308125!3d30.698319302068263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fee906da6f81f%3A0x512998f16ce508d8!2sSahibzada+Ajit+Singh+Nagar%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1517556102589"
+                                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="follow_right float-right">
+                                <h4>Followers 10</h4>
+                                <div class="follow_inner">
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="follow_user">
+                                        <div class="media">
+                                            <div class="follow_profile">
+                                                <img src="assets/images/follow_profile.png"> </div>
+                                            <div class="media-body">
+                                                <h3> Follower 1 </h3>
+                                                <p> Points to be redeemed xxxx </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="follow_footer">
+                                    <a href=""> See All </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- photos tab -->
+                    <!-- <div class="tab-pane" id="Photos" role="tabpanel">
+                        <div class="follow_tab">
+                            <div class="follow_left float-left">
+                                <div class="brand_title">
+                                    <h4>Brand Detail
+                                        <span class="icon-edit2"> </span>
+                                    </h4>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate
+                                        eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit
+                                        tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie
+                                        elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium
+                                        sit amet quis magna. Aenean velit odio, elementum in. </p>
+                                </div>
+                                <form>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand URL</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Phone number</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Category</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Brand Address 2</label>
+                                    </div>
+                                    <div class="floating-label">
+                                        <input class="floating-input" placeholder=" " type="text">
+                                        <span class="highlight"></span>
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="follow_map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54891.42554439708!2d76.66236106308125!3d30.698319302068263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fee906da6f81f%3A0x512998f16ce508d8!2sSahibzada+Ajit+Singh+Nagar%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1517556102589"
+                                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="follow_right float-right">
+                                <h4>Photos 10</h4>
+                                <div class="follow_inner">
+                                    <div class="photos_main">
+                                        <a href="" data-toggle="modal" data-target="#postModal" data-dismiss="modal">
+                                            <img src="assets/images/photo1.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="" data-toggle="modal" data-target="#postModal" data-dismiss="modal">
+                                            <img src="assets/images/photo2.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="" data-toggle="modal" data-target="#postModal" data-dismiss="modal">
+                                            <img src="assets/images/photo3.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo1.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo2.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo3.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo1.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo2.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo3.jpg"> </a>
+                                    </div>
+                                    <div class="photos_main">
+                                        <a href="">
+                                            <img src="assets/images/photo1.jpg"> </a>
+                                    </div>
+                                </div>
+                                <div class="follow_footer">
+                                    <a href=""> See All </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

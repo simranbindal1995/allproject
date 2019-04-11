@@ -1,0 +1,25 @@
+<div class="follow_right float-right">
+  <h4>Network {{totalCount}}</h4>
+  <div class="follow_inner">
+    <div class="follow_user" *ngFor="let data of followerNetworks">
+      <div class="media" [routerLink]="['/follower/profile',data._id]" routerLinkActive="active">
+        <div class="follow_profile">
+          <img src="{{data.profile_pic? (data.profile_pic|toMediaUrl):'assets/images/avatar.png'}}"> </div>
+        <div class="media-body align-self-center">
+          <h3> {{data.userName | captaliseText}} </h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="post_no no_post">
+    <I *ngIf="totalCount== 0">
+
+      No results. </I>
+  </div>
+
+  <!-- <div class="follow_footer">
+    <a href=""> See All </a>
+  </div> -->
+</div>

@@ -1,0 +1,71 @@
+<div class="password account">
+  <div class="account_detail">
+    <h2> Add Card Holder's Information
+    </h2>
+    <div class="login_outer">
+      <div class="login_inner">
+        <div class="login_form complete_info brand_name">
+          <div class="info_form">
+            <form [formGroup]="cardDetails" (ngSubmit)="submitForm()">
+              <div [ngClass]="{'success_icon':!cardDetails.controls.name_on_card.errors}">
+                <div class="floating-label">
+                  <input class="floating-input" type="text" maxlength="21" formControlName="name_on_card" placeholder="" name="name_on_card"
+                    id="name_on_card">
+                  <span class="highlight"></span>
+                  <label>cardholder name</label>
+                  <div class="text-danger" *ngIf="cardDetails.controls.name_on_card.errors && cardDetails.controls.name_on_card.errors.required && (cardDetails.controls.name_on_card.dirty || cardDetails.controls.name_on_card.touched)">*Required</div>
+                  <div class="text-danger" *ngIf="cardDetails.controls.name_on_card.errors && cardDetails.controls.name_on_card.errors.pattern">* only alphanumeric char are allowed</div>
+                </div>
+              </div>
+
+              <div class="credit_card" [ngClass]="{'success_icon':!cardDetails.controls.card_number.errors&&!cardDetails.controls.cvc.errors && isCvcValid}">
+                <div class="floating-label card_number float-left">
+                  <input class="floating-input" type="text" (input)="validateCardNumber($event)" formControlName="card_number" placeholder=""
+                    name="card_number" id="card_number">
+                  <span class="highlight"></span>
+                  <label>Credit/Debit Card Number</label>
+                  <div class="text-danger" *ngIf="cardDetails.controls.card_number.invalid && (cardDetails.controls.card_number.dirty || cardDetails.controls.card_number.touched)">*Required</div>
+                  <div class="text-danger" *ngIf="(cardDetails.controls.card_number.dirty || cardDetails.controls.card_number.touched) && !isCardValid">Please enter a valid card number.</div>
+                </div>
+                <div class="floating-label cvv float-right">
+                  <input class="floating-input" type="text" (input)="validateCVC($event)" formControlName="cvc" placeholder="" name="cvc" id="cvc">
+                  <span class="highlight"></span>
+                  <label>CVC</label>
+                  <div class="text-danger" *ngIf="cardDetails.controls.cvc.errors && cardDetails.controls.cvc.errors.required && (cardDetails.controls.cvc.dirty || cardDetails.controls.cvc.touched)">*Required</div>
+                  <div class="text-danger" *ngIf="!cardDetails.controls.cvc.errors &&!isCvcValid">CVC is not valid.</div>
+                </div>
+              </div>
+              <div class="expiration_date" [ngClass]="{'success_icon':!cardDetails.controls.expiry_month.errors&&!cardDetails.controls.expiry_year.errors && isExpiryDateValid}">
+                <div class="expiration_month float-left">
+                  <label>expiration date</label>
+                  <div class="floating-label">
+                    <div class="expiry_month">
+                      <select class="selectpicker floating-input month float-left" formControlName="expiry_month" (change)="validateCardExpiry($event,'expiry_year')">
+                        <option value="" [disabled]="disabled">Month</option>
+                        <option *ngFor="let month of months" [value]="month.id" [disabled]="month.disabled">{{month.name}}</option>
+                      </select>
+                      <div class="text-danger" *ngIf="cardDetails.controls.expiry_month.errors && cardDetails.controls.expiry_month.errors.required && (cardDetails.controls.expiry_month.dirty || cardDetails.controls.expiry_month.touched)">*Required</div>
+                    </div>
+                    <div class="expiry_month">
+                      <select class="selectpicker floating-input year float-right" formControlName="expiry_year" (change)="validateCardExpiry($event,'expiry_year')">
+                        <option value="" [disabled]="disabled">Year</option>
+                        <option *ngFor="let year of years" [value]="year.id" [disabled]="year.disabled">{{year.name}}</option>
+                      </select>
+                      <div class="text-danger" *ngIf="cardDetails.controls.expiry_year.errors && cardDetails.controls.expiry_year.errors.required && (cardDetails.controls.expiry_year.dirty || cardDetails.controls.expiry_year.touched)">*Required</div>
+                    </div>
+                  </div>
+                  <div class="text-danger" *ngIf="!cardDetails.controls.expiry_year.errors && !cardDetails.controls.expiry_month.errors && !isExpiryDateValid">Expiry date is not valid.</div>
+                </div>
+                <!-- <div class="card_img float-right">
+                  <img src="assets/images/card_img.jpg" alt="">
+                </div> -->
+              </div>
+              <button type="submit" class="button_main" [disabled]="!cardDetails.valid">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentCardsOpen'" [closeButtonId]="'modalComponentCardsClose'" #modalComponentCards></app-modal>

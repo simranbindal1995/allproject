@@ -1,0 +1,64 @@
+// THEME AND COLOR
+
+
+$yellow: #ffa11b;
+$darkblue: #34c6e0;
+$dulwhite: rgba(255, 255, 255, 0.65) !default;
+$basecolor: #f5f8f9 !default;
+$h1-color: #292e59;
+$radio-color: #52b3c6;
+$color-e1: #333333;
+$color-f3: #f3f3f3;
+$color-e7: #e7e7e7;
+$color-ae: #aeaeae;
+$color-60: #606060;
+$color-42: #424242;
+$color-7b: #7b7b7b;
+$color-ed: #ededed;
+$acacac: #acacac;
+$transparent: transparent;
+$darkgreen-color: #4bb87b;
+$green-color: #4bb87b;
+$blue-color: #34c6e0;
+$pink-color: #f75d81;
+$white: #ffffff;
+
+//block divs
+$block: block;
+$ib: inline-block;
+
+// PATH & FONT NAME
+$imgpath: "/assets/images/" !default;
+$primary-font-path: "/assets/fonts" !default;
+$url: $imgpath !default;
+$font-path: "/assets/fonts" !default;
+$icon-font-path: "/assets/fonts" !default;
+$font-family: "Poppins",
+sans-serif !default;
+$fa-font-path: "../node_modules/font-awesome/fonts" !default;
+
+// FONTS and TEXT STYLE
+$lineheight: 1.5 !default;
+$lineheight-sm: 1.2 !default;
+$lineheightnormal: normal !default;
+$lhn: $lineheightnormal !default;
+
+
+//border colors
+$parrotcolor: #69c800;
+$table-headcolor: #f1f3f6;
+$red: #fe4040 !default;
+$skycolor: #4b29ac !default;
+$skyhovercolor: #371790 !default;
+$border-lightblue: #d4e1e6;
+
+//TRANSITION EFFECT
+$trasition_all: all 0.4s ease-in-out 0s !default;
+
+$desktop: 1400px;
+$mini-desktop: 1280px;
+$h_tab: 1024px;
+$tablet: 991px;
+$ipad: 768px;
+$ptablet: 767px;
+$mobile: 479px;

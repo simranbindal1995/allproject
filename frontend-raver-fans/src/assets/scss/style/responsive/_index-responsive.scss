@@ -1,0 +1,723 @@
+@include media("<=1600px") {
+    .verification_mail {
+        .modal-dialog {
+            .modal-content {
+                @include padding(40);
+                .modal-body {
+                    .login_form {
+                        .button_main {
+                            @include margin(19 0 0 0);
+                        }
+                        p {
+                            @include margin(20 0 0 0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media("<=1280px") {
+    #banner {
+        .banner_text {
+            p {
+                width: auto;
+            }
+        }
+    }
+    .fans_brands {
+        .brands_inner {
+            .fans_text {
+                margin: 0 0 49px 0;
+            }
+            .fans_img {
+                img {
+                    width: 284px;
+                }
+            }
+        }
+        &.brands {
+            .brands_inner {
+                .fans_text {
+                    margin: 65px 0 0 0;
+                }
+            }
+        }
+    }
+    .contact_us {
+        .contact_inner {
+            margin: 40px 0 0 0;
+            h2 {
+                font-size: 30px;
+            }
+            .contact_form {
+                width: 612px;
+                .form-group {
+                    .form-control {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media("<=1024px") {
+    #banner {
+        margin: 67px 0 0 0;
+        .banner_text {
+            text-align: left;
+            .banner_btn {
+                margin: 27px 0 0 0;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 21px;
+                line-height: 28px;
+                width: auto;
+            }
+        }
+    }
+    .header {
+        height: auto;
+        padding: 10px 0;
+        .navbar {
+            &.navbar-light {
+                .navbar-brand {
+                    margin: 0;
+                    img {
+                        width: 147px;
+                    }
+                }
+                .navbar-toggler {
+                    padding: 1px 7px;
+                    margin: 7px 0 0 0;
+                    color: $white;
+                    .navbar-toggler-icon {
+                        width: 23px;
+                        height: 23px;
+                    }
+                }
+                .nav-item {
+                    .nav-link {
+                        margin: 0;
+                        padding: 8px 16px;
+                        border-bottom: none;
+                        &:hover {
+                            border-bottom: none;
+                        }
+                    }
+                    &.active {
+                        .nav-link {
+                            border-bottom: none;
+                        }
+                    }
+                    &.login_ {
+                        .nav-link {
+                            margin: 0 0 0 0;
+                        }
+                        &.sign_up-border {
+                            .nav-link {
+                                padding: 8px 16px;
+                                &::after {
+                                    content: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .navbar-nav {
+                    background: $blue-color;
+                    margin: 7px 0 0 0;
+                }
+            }
+        }
+    }
+    .fans_brands {
+        margin: 0;
+        padding: 55px 0;
+        .brands_inner {
+            .fans_text {
+                @include margin(0);
+                p {
+                    line-height: 27px;
+                    font-size: 15px;
+                }
+                h2 {
+                    font-size: 20px;
+                }
+            }
+        }
+        &.brands {
+            padding: 55px 0;
+            .brands_inner {
+                .fans_text {
+                    margin: 49px 0 0 0;
+                }
+            }
+        }
+    }
+    .register_content {
+        padding: 40px 0;
+        h3 {
+            font-size: 16px;
+            line-height: 39px;
+        }
+        .reward_point {
+            margin: 30px 0;
+        }
+        .button_main {
+            width: 258px;
+            border-radius: 0;
+        }
+    }
+    .verification_mail {
+        .modal-dialog {
+            max-width: 670px;
+            -webkit-transform: inherit !important;
+            transform: inherit !important;
+            top: 14px;
+            .modal-content {
+                .modal-body {
+                    .button_main {
+                        width: 220px;
+                    }
+                    p {
+                        line-height: 30px;
+                        font-size: 20px;
+                        margin: 15px 0;
+                    }
+                }
+            }
+        }
+    }
+    .contact_us {
+        padding: 55px 0 16px;
+        .contact_inner {
+            margin: 40px 0 0 0;
+            h2 {
+                font-size: 30px;
+            }
+            .contact_form {
+                width: 612px;
+                .form-group {
+                    .form-control {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .download_section {
+        .download_inner {
+            .download_text {
+                margin: 0;
+                h2 {
+                    font-size: 28px;
+                }
+                .download_icon {
+                    margin: 30px 0 0 0;
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        p {
+            font-size: 14px;
+        }
+    }
+}
+
+@include media("<=991px") {
+    .header {
+        .navbar {
+            &.navbar-light {
+                .navbar-toggler {
+                    border: none;
+                    span {
+                        font-size: 35px;
+                    }
+                }
+            }
+        }
+    }
+    .container {
+        max-width: 100%;
+    }
+    .contact_us {
+        .contact_inner {
+            margin: 40px 0 0 0;
+            h2 {
+                font-size: 30px;
+            }
+            .contact_form {
+                .form-group {
+                    .form-control {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .how_work {
+        .works_inner {
+            padding: 75px 0;
+        }
+    }
+    #banner {
+        .banner_text {
+            &.sign_up {
+                padding: 0;
+                h2 {
+                    font-size: 16px;
+                    line-height: 34px;
+                }
+                h3 {
+                    font-size: 16px;
+                    line-height: 48px;
+                    margin: 24px 0 0 0;
+                }
+            }
+        }
+    }
+    .login_outer {
+        .login_inner {
+            .login_form {
+                &.complete_info {
+                    width: 721px;
+                }
+            }
+        }
+    }
+}
+
+@include media("<=767px") {
+    .header {
+        height: auto;
+        padding: 10px 0;
+        .navbar {
+            &.navbar-light {
+                .navbar-brand {
+                    margin: 0;
+                    img {
+                        width: 115px;
+                    }
+                }
+                .navbar-toggler {
+                    padding: 1px 7px;
+                    margin: 7px 0 0 0;
+                    .navbar-toggler-icon {
+                        width: 23px;
+                        height: 23px;
+                    }
+                }
+                .nav-item {
+                    .nav-link {
+                        margin: 0;
+                        padding: 8px 16px;
+                        border-bottom: none;
+                        &:hover {
+                            border-bottom: none;
+                        }
+                    }
+                    &.active {
+                        .nav-link {
+                            border-bottom: none;
+                        }
+                    }
+                    &.login_ {
+                        .nav-link {
+                            margin: 0 0 0 0;
+                        }
+                        &.sign_up-border {
+                            .nav-link {
+                                padding: 8px 16px;
+                                &::after {
+                                    content: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .navbar-nav {
+                    background: $blue-color;
+                    margin: 7px 0 0 0;
+                }
+            }
+        }
+    }
+    #banner {
+        margin: 0;
+        @include padding(100 0 34 0);
+        .banner_text {
+            padding: 0 0 0 0;
+            text-align: center;
+            h1 {
+                font-size: 22px;
+                margin: 30px 0 0 0;
+            }
+            p {
+                line-height: 29px;
+                width: 100%;
+                font-size: 22px;
+            }
+            .banner_btn {
+                margin: 30px 0 0 0;
+                .button_main {
+                    margin: 0 19px 14px 20px;
+                }
+            }
+        }
+        .banner_img {
+            span {
+                img {
+                    width: 280px;
+                }
+            }
+        }
+    }
+    .verification_mail {
+        overflow: scroll;
+        .modal-dialog {
+            .modal-content {
+                padding: 0;
+                .modal-body {
+                    .login_form {
+                        .button_main {
+                            width: 230px;
+                        }
+                        .forgot_password {
+                            font-size: 16px;
+                        }
+                        p {
+                            line-height: 30px;
+                            font-size: 16px;
+                            margin: 15px 0;
+                        }
+                        h2 {
+                            font-size: 20px;
+                        }
+                        .floating-label {
+                            .floating-input {
+                                font-size: 16px;
+                            }
+                        }
+                        .check_box {
+                            label {
+                                font-size: 16px;
+                            }
+                            &.sign_up {
+                                label {
+                                    font-size: 14px;
+                                    line-height: 23px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #resetPassword {
+        &.verification_mail {
+            .modal-dialog {
+                .modal-content {
+                    .modal-body {
+                        .login_form {
+                            .button_main {
+                                &.small_btn {
+                                    width: 230px;
+                                    float: none !important;
+                                    margin: 0 0 15px 0;
+                                    &:last-child {
+                                        margin: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #freeMessage {
+        .modal-dialog {
+            .modal-content {
+                .modal-body {
+                    h3 {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    #verificationMail {
+        .modal-dialog {
+            max-width: 93%;
+            .modal-content {
+                .modal-body {
+                    padding: 26px 7px;
+                    h2 {
+                        font-size: 22px;
+                    }
+                    p {
+                        line-height: 30px;
+                        font-size: 16px;
+                        margin: 12px 0;
+                    }
+                    .button_main {
+                        width: 84%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+    .fans_brands {
+        margin: 0;
+        padding: 46px 0;
+        .brands_inner {
+            .fans_text {
+                margin: 18px 0 18px 0;
+                h2 {
+                    font-size: 22px;
+                }
+                p {
+                    font-size: 16px;
+                }
+            }
+            .fans_img {
+                text-align: center;
+                margin: 30px 0 0 0;
+                img {
+                    width: 226px;
+                }
+            }
+        }
+        &.brands {
+            padding: 46px 0;
+            .brands_inner {
+                .fans_text {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .contact_us {
+        margin: 0;
+        padding: 46px 0 0;
+        .contact_inner {
+            margin: 0;
+            h2 {
+                font-size: 24px;
+            }
+            .contact_form {
+                width: 100%;
+                margin: 14px 0 0 0;
+                padding: 29px 11px;
+                .form-group {
+                    .form-control {
+                        font-size: 16px;
+                    }
+                }
+                .floating-label {
+                    input {
+                        font-size: 18px;
+                    }
+                    label {
+                        font-size: 13px;
+                    }
+                }
+                .login_btn {
+                    .button_main {
+                        width: 86%;
+                        font-size: 18px;
+                    }
+                }
+                .captcha_outer {
+                    .rc-anchor-normal {
+                        transform: scale(0.8);
+                        transform-origin: top left;
+                    }
+                }
+            }
+            .contact_address {
+                margin: 38px 0 0 0;
+                .address_bottom {
+                    h3 {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        display: inline-block;
+        width: 100%;
+        position: inherit;
+        bottom: auto;
+        padding: 24px 0 17px;
+        margin: 19px 0 0 0;
+        .footer_left {
+            width: 100%;
+            text-align: center;
+            display: inline-block;
+        }
+        .footer_right {
+            width: 100%;
+            text-align: center;
+            display: inline-block;
+        }
+        p {
+            line-height: normal;
+            font-size: 12px;
+            margin: 0 0 10px 0;
+        }
+        a {
+            margin: 18px 0 14px 0;
+            display: inline-block;
+            font-size: 12px;
+        }
+    }
+    .download_section {
+        padding: 46px 0;
+        .download_inner {
+            .download_text {
+                margin: 34px 0 0 0;
+                h2 {
+                    font-size: 18px;
+                }
+                h4 {
+                    font-size: 14px;
+                }
+                .download_icon {
+                    margin: 23px 0 0 0;
+                    a {
+                        display: inline-block;
+                        margin: 0 22px 13px 22px;
+                    }
+                }
+            }
+            .download_mobile_img {
+                display: none;
+            }
+        }
+    }
+    .brands {
+        padding: 55px 0;
+        .brands_inner {
+            .brand_text {
+                h2 {
+                    font-size: 24px;
+                }
+                p {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .how_work {
+        .works_inner {
+            padding: 40px 0;
+        }
+    }
+    .account_detail {
+        .login_outer {
+            .login_inner {
+                padding: 40px 0;
+                .login_form {
+                    &.complete_info {
+                        width: 100%;
+                        padding: 0 0 30px 0;
+                        &.brand_name {
+                            padding: 15px 0 30px 0;
+                        }
+                        .profile_img {
+                            width: 143px;
+                            height: 143px;
+                            margin: -104px 0 0 20px;
+                        }
+                        .info_form {
+                            width: 90%;
+                            margin: 50px auto 0;
+                            .credit_card {
+                                .floating-label {
+                                    &.card_number {
+                                        width: 100% !important;
+                                    }
+                                    &.cvv {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                            .expiration_date {
+                                .expiration_month {
+                                    width: 100%;
+                                    .selectpicker {
+                                        &.month {
+                                            width: 100%;
+                                            margin: 0 0 17px 0;
+                                        }
+                                        &.year {
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                                .card_img {
+                                    margin: 15px 0 0 0;
+                                }
+                            }
+                            .free_trial {
+                                font-size: 15px;
+                            }
+                            .success_icon {
+                                &::after {
+                                    left: -10px;
+                                }
+                            }
+                        }
+                        .login_btn {
+                            .button_main {
+                                width: 230px;
+                            }
+                            .forgot_password {
+                                font-size: 16px;
+                            }
+                            p {
+                                font-size: 16px;
+                            }
+                        }
+                        h2 {
+                            font-size: 20px;
+                        }
+                        .floating-label {
+                            .floating-input {
+                                font-size: 16px;
+                            }
+                        }
+                        .check_box {
+                            label {
+                                font-size: 16px;
+                            }
+                            &.sign_up {
+                                label {
+                                    font-size: 14px;
+                                    line-height: 23px;
+                                }
+                            }
+                        }
+                    }
+                    .info_banner {
+                        .change_cover {
+                            bottom: 12px;
+                            right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

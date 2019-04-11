@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Fan Name </th>
+        <th> Reason </th>
+        <th> Date </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of ravesData | paginate: { itemsPerPage: 10, currentPage: p,totalItems:totalCount }">
+        <td><a  [routerLink]="['/follower/profile',data.created_by._id]" routerLinkActive="active">{{data.created_by.userName | captaliseText}}</a></td>
+        <td>{{data.decline_reason | captaliseText}} </td>
+        <td>{{data.modefied_at*1000 | date:'dd/MM/yy'}} </td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="totalCount==0">
+      <div class="post_no no_post">
+    <I>No results found.</I>
+    </div>
+  </span>
+  <pagination-controls autoHide="true" *ngIf="totalCount > 10" (pageChange)="p = $event" (click)="pageChanged(p)"></pagination-controls>
+</div>

@@ -1,0 +1,67 @@
+.follower_main {
+  .follow_tab {
+    .brand {
+      background: #fff;
+      padding: 12px 22px;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        margin: 0 0 17px 0;
+
+        &:last-child {
+          margin: 0;
+        }
+
+        img {
+          max-height: 45px;
+          border-radius: 50%;
+          min-height: 45px;
+          min-width: 45px;
+          margin: 0 15px 0 0;
+          object-fit: contain;
+          max-width: 45px;
+        }
+      }
+    }
+
+    .follow_inner {
+      h6 {
+        padding: 0 17px;
+        line-height: 30px;
+        color: #717275;
+        font-weight: 400;
+        font-size: 14px;
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: pre-line;
+      }
+    }
+  }
+
+  .follower_profile {
+    .post {
+      margin: 0 0 12px 0;
+
+      &.last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.photo_outer {
+  display: inline-block;
+  margin: 0 0 25px 25px;
+
+  .comment_like {
+    margin: 20px 0 0 0;
+    text-align: center;
+
+    a {
+      @include font-size(14);
+      @include font-weight(semi-bold);
+      @include padding(0 3 0 3);
+    }
+  }
+}

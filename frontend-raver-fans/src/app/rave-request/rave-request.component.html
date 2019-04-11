@@ -1,0 +1,170 @@
+<div class="float-left post_left">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" role="tab" aria-controls="home" (click)="tabChanged();" [routerLink]="['/dashboard/rave', 'approved-requests']"
+        routerLinkActive="active">Approved</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " data-toggle="tab" role="tab" aria-controls="profile" (click)="tabChanged();" [routerLink]="['/dashboard/rave', 'pending-requests']"
+        routerLinkActive="active">To be Approved</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane " id="Approved" role="tabpanel">
+      <div class="post" *ngFor="let post of requests">
+        <div class="post_outer">
+          <div class="post-top">
+            <div class="top_left float-left">
+              <a href="">
+                <div class="side-profile">
+                  <img src="{{post.created_by.profile_pic?(post.created_by.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}"> </div>
+                <div class="profile_name">
+                  <p>{{post.created_by.userName | captaliseText}}:
+                    <span> {{post.brand_id.userName | captaliseText}} </span>
+                  </p>
+                  <h5> {{post.created_at*1000 | timeAgo}} </h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="img_title">
+            <h2>{{post.description | captaliseText}}</h2>
+            <div class="img_box" *ngIf="post.image">
+              <img src="{{post.image?(post.image|toMediaUrl):'assets/images/default-profile.png'}}">
+
+            </div>
+              <video controls width="624" height="260" *ngIf="post.video">
+                <source src="{{post.video._id|toMediaUrl}}" type="video/mp4">
+              </video>
+            </div>
+            <div class="comment_like approved">
+              <a>
+              <span class="icon-like"> </span> Approved </a>
+            </div>
+          </div>
+        </div>
+        <div class="post" *ngIf="requests.length == 0">
+          <div class="post_outer">
+            <div class="post-top">
+              <div class="post_no">
+                <span class="icon-rave"></span>
+                No post to show
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="beApproved" role="tabpanel">
+        <div class="post" *ngFor="let post of requests">
+          <div class="post_outer">
+            <div class="post-top">
+              <div class="top_left float-left">
+                <a href="">
+                <div class="side-profile">
+                  <img src="{{post.created_by.profile_pic?(post.created_by.profile_pic|toMediaUrl):'assets/images/default-profile.png'}}"> </div>
+                <div class="profile_name">
+                  <p> {{post.created_by.userName | captaliseText}}:
+                    <span> {{post.brand_id.userName | captaliseText}} </span>
+                  </p>
+                  <h5> {{post.created_at*1000 | timeAgo}}</h5>
+                </div>
+              </a>
+              </div>
+            </div>
+            <div class="img_title">
+              <h2>{{post.description | captaliseText}}</h2>
+              <div class="img_box" *ngIf="post.image">
+                <img src="{{post.image?(post.image|toMediaUrl):'assets/images/default-profile.png'}}">
+
+            </div>
+                <video controls width="624" height="260" *ngIf="post.video">
+                  <source src="{{post.video._id|toMediaUrl}}" type="video/mp4">
+                </video>
+              </div>
+              <div class="comment_like approved">
+                <a class="be" (click)="approveRave(post._id)">
+              <span class="icon-like"> </span> Approve </a>
+                <a class="be" (click)="declineModal.show(); setDeclinePostId(post._id)">
+              <span class="icon-unlike"> </span> Decline </a>
+              </div>
+            </div>
+          </div>
+          <div class="post" *ngIf="requests.length == 0">
+            <div class="post_outer">
+              <div class="post-top">
+                <div class="post_no">
+                  <span class="icon-rave"></span>
+                  No Raves to approve
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="post" *ngIf="totalRequests> requests.length">
+          <div class="post_outer">
+            <div class="post-top text-center">
+              <a style="cursor: pointer;" *ngIf="totalRequests > 10" (click)="getRequests()">
+            Load more
+          </a>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="post" *ngIf="requests.length == 0">
+      <div class="post_outer">
+        <div class="post-top">
+          <div class="post_no">
+            <span class="icon-rave"></span>
+            No post to show
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+      </div>
+    </div>
+    <!-- Start decline Modal -->
+    <button id="hidedeclineModal" [hidden]="true" (click)="declineModal.hide()"></button>
+    <div class="modal fade verification_mail decline_modal" bsModal #declineModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" (onHidden)="clearData()">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="login_form rave_decline">
+              <h2>Please enter clear reason for declining this Rave </h2>
+              <form [formGroup]="declineRaveForm" (ngSubmit)="declineRave()">
+                <textarea class="form-control" formControlName="reason" name="reason" placeholder="Type Here..." rows="7" required></textarea>
+                <small class="text-danger">{{declineRavemessage}}</small>
+                <div class="login_btn">
+                  <button class="button_main" type="submit"> Submit </button>
+                  <button class="button_main" type="button" (click)="declineModal.hide()"> Cancel </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End decline Modal -->
+    <!-- Start verification_mail Modal -->
+    <div class="modal fade verification_mail" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="login_form">
+              <h2> Enter email addresses of people you want to invite </h2>
+              <form>
+                <div class="floating-label">
+                  <input class="floating-input" type="email" placeholder=" ">
+                  <span class="highlight"></span>
+                  <label>Email Address</label>
+                </div>
+                <div class="login_btn">
+                  <a href="" class="button_main"> Submit </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End verification_mail Modal -->
+    <app-modal [openButtonId]="'modalComponentRequestRaveOpen'" [closeButtonId]="'modalComponentRequestRaveClose'" #modalComponentRequestRave></app-modal>

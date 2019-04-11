@@ -1,0 +1,159 @@
+<div id="banner">
+  <div class="banner_text">
+    <div class="container">
+      <div class="row align-itmes-center">
+        <div class="col-sm-12 col-md-5 order-md-12 banner_img">
+          <span>
+            <img src="assets/images/system.png" class="img-fluid" />
+          </span>
+        </div>
+        <div class="col-sm-12 col-md-7 order-md-1">
+          <h1> RAVER FANS </h1>
+          <p>
+            <span> Brands </span> Like to engage their
+            <span>Fans</span> and
+            <span>Fans</span> like to connect with their Favourite
+            <span>Brands, Raver Fans</span> simply connects
+            <span>Brands</span> and
+            <span>Fans</span> on a social platform.
+          </p>
+          <div class="banner_btn">
+            <a class="button_main theme" routerLink="/brand-home"> i am a brand </a>
+            <a class="button_main yellow" routerLink="/fan-home"> i am a Fan </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fans_brands">
+  <div class="container">
+    <div class="brands_inner">
+      <div class="row">
+        <div class="col-lg-7 col-md-7">
+          <div class="fans_text">
+            <h2> Fans </h2>
+            <p> Happy with a brand’s service or product?
+              <span>RAVE</span> about it to the brand and your social media circles.</p>
+            <p>Raves can be videos, images, and text.</p>
+            <p> Gather points</p>
+            <p>Redeem points for Rewards and Incentives.</p>
+            <p>Frustrated with the brand’s service or product? Raise a
+              <span>STORM</span> to the brand to get answers. </p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 fans_img">
+          <span>
+            <img src="assets/images/fans_img.png" alt="" class="img-fluid">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="download_section">
+  <div class="container">
+    <div class="download_inner">
+      <div class="download_mobile_img">
+        <span>
+          <img src="assets/images/mobile.png" alt="" class="img-fluid"> </span>
+      </div>
+      <div class="download_text">
+        <h2> Download the app free </h2>
+        <p>App available only on IOS. Android version coming soon</p>
+        <div class="download_icon">
+          <a>
+            <img src="assets/images/app_store.png" alt=""> </a>
+          <a>
+            <img src="assets/images/play_store.png" alt=""> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fans_brands brands">
+  <div class="container">
+    <div class="brands_inner">
+      <div class="row">
+        <div class="col-lg-7 col-md-7">
+          <div class="fans_text">
+            <h2> Brands </h2>
+            <p> Create and share contents with your Fans.</p>
+            <p>Engage, solve problems, and create exceptional customer Services.</p>
+            <p> Gain intelligence and other insights.</p>
+            <p>Reward.</p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 fans_img">
+          <span>
+            <img src="assets/images/brand_img.png" alt="" class="img-fluid">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact_us" id="contactUs">
+  <div class="container">
+    <div class="contact_inner">
+      <h2> Contact us </h2>
+      <div class="contact_form">
+        <form [formGroup]="customerSupportForm" (ngSubmit)="customerSupportForm.valid && customerSupport()">
+          <div class="floating-label">
+            <input class="floating-input" type="email" formControlName="emailField" name="emailField" placeholder=" ">
+            <span class="highlight"></span>
+            <!-- <small class="text-danger" *ngIf="customerSupportForm.controls.emailField.errors.required && (customerSupportForm.controls.emailField.dirty || formSubmitted)">Email is required</small> -->
+            <!-- <span>Required====</span> {{customerSupportForm.controls.emailField.errors.required}}
+                        <span>asdada=====</span> {{customerSupportForm.controls.emailField.invalid}} -->
+            <small class="text-danger" *ngIf="customerSupportForm.controls.emailField.invalid && (customerSupportForm.controls.emailField.dirty || formSubmitted)">Email is invalid</small>
+            <label>Email</label>
+          </div>
+          <div class="floating-label">
+            <textarea class="floating-input" name="query" formControlName="query" placeholder=" "></textarea>
+            <!-- <textarea class="floating-input" name="query" formControlName="query"></textarea> -->
+            <span class="highlight"></span>
+            <small class="text-danger" *ngIf="customerSupportForm.controls.query.invalid && (customerSupportForm.controls.query.dirty || formSubmitted)">Message is required</small>
+            <label>Message</label>
+          </div>
+          <!-- localhost: 6LeMImEUAAAAAMQ8KDyOCnMKrYpEfePYyots0h1Z -->
+          <!-- staging: 6LcRQWAUAAAAABfRybzF57AJ0kp71dBRrqWWssuF -->
+          <!--live key 6LfBeZQUAAAAAAv1-gjRkL_LZMau_FcGqhl6jUwz with William.kwakye@hotmail.co.uk password - Password001% credentials -->
+          <re-captcha (resolved)="resolved($event)" formControlName="recaptcha" name="recaptcha" siteKey="6LefEpYUAAAAACJXRZQHt_TV5GgTwk13ueA3jSD9"></re-captcha>
+          <small class="text-danger" *ngIf="customerSupportForm.controls.recaptcha.invalid && formSubmitted">Select recapcha</small>
+          <div class="login_btn">
+            <input type="submit" class="button_main" (click)="formSubmitted=true">
+          </div>
+        </form>
+      </div>
+      <div class="footer-bottom landing" [hidden]="hidePostLoginFooter">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 order-md-12 order-3 footer_left">
+              <p> © 2018-2019
+                <span> Raver Fans </span> App.All Rights Reserved</p>
+            </div>
+            <div class="col-lg-4 col-md-4 order-md-12 order-1 home_social">
+              <a href="https://twitter.com/RaverFans" target="_blank">
+                <span class="icon-twitter-circular-button"> </span>
+              </a>
+              <a href="https://www.facebook.com/RaverFansBrand/" target="_blank">
+                <span class="icon-facebook-logo-in-circular-button-outlined-social-symbol"> </span>
+              </a>
+              <a href="https://www.instagram.com/raverfans/" target="_blank">
+                <span class="icon-instagram"></span>
+              </a>
+              <a href="https://www.linkedin.com/company/raver-fans/" target="_blank">
+                <span class="icon-social-linkedin-circular-button"> </span>
+              </a>
+            </div>
+            <div class="col-lg-4 col-md-4 order-md-12 order-2  footer_right">
+              <a href="javascript:void(0);" routerLink="/terms"> Terms & conditions </a>
+              <a href="javascript:void(0);" routerLink="/privacy"> Privacy policy </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal [openButtonId]="'modalComponentRequestSupportOpen'" [closeButtonId]="'modalComponentRequestSupportClose'" #modalComponentRequestSupport></app-modal>
